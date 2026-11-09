@@ -12,12 +12,10 @@ interface NavbarProps {
 }
 
 /**
- * Gucci-inspired Scroll-Reactive Sticky Header + Animated Hero Wordmark
- * - At scrollY === 0 on 'inicio': transparent header over hero photo, and the
- *   MODA AUSTRAL wordmark sits large over the hero in Rosa Austral (#de9fbd).
- * - On scroll down (or on interior pages): the header bar slides/solidifies in
- *   Marfil (#f5ecda) and the MODA AUSTRAL wordmark shrinks and docks into the center
- *   of the sticky header as it accompanies the user down the page.
+ * Gucci-inspired Scroll-Reactive Sticky Header + Balanced Mobile Layout
+ * - Left: Search (icon-only on mobile, "BUSCAR" on desktop) + desktop category links
+ * - Center: MODA AUSTRAL wordmark (starts in center of hero -> docks cleanly in header center without overlapping icons)
+ * - Right: Hamburger Menu (icon-only on mobile without "MENÚ" text; "MENÚ" label only on sm+)
  */
 export function Navbar({
   currentPage,
@@ -44,35 +42,41 @@ export function Navbar({
     <header
       className={`fixed top-0 left-0 z-40 w-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
         isHeroTop
-          ? 'border-b border-transparent bg-gradient-to-b from-[#510f18]/80 to-transparent py-[6px]'
+          ? 'border-b border-transparent bg-gradient-to-b from-[#510f18]/80 to-transparent py-[4px]'
           : 'translate-y-0 border-b border-dashed border-cork-border bg-[#f5ecda]/98 py-0 backdrop-blur-md'
       }`}
     >
-      <div className="relative flex h-[68px] w-full items-center justify-between px-[18px] sm:px-[31px] lg:px-[45px]">
-        {/* Left: Gucci-style "+ Contactar" + Quick Boutique Links on Desktop */}
-        <div className="z-10 flex items-center gap-[20px]">
+      <div className="relative flex h-[64px] sm:h-[68px] w-full items-center justify-between px-[16px] sm:px-[31px] lg:px-[45px]">
+        {/* Left: Search Button (Lupita) + Quick Boutique Links on Desktop */}
+        <div
+          className={`z-10 flex items-center gap-[20px] transition-colors duration-500 ${
+            isHeroTop ? 'text-[#f5ecda]' : 'text-[#510f18]'
+          }`}
+        >
           <button
             type="button"
-            onClick={() => onNavigate('consulta')}
-            className={`group flex cursor-pointer items-center gap-[8px] text-[12px] font-medium uppercase leading-none transition-colors duration-500 ${
-              isHeroTop ? 'text-[#f5ecda]' : 'text-[#510f18]'
-            }`}
+            onClick={onOpenSearch}
+            aria-label="Buscar prendas"
+            className="flex h-[38px] w-[38px] sm:w-auto cursor-pointer items-center justify-start gap-[8px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75"
           >
-            <span
-              className={`transition-transform duration-300 group-hover:rotate-90 ${
-                isHeroTop ? 'text-[#de9fbd]' : 'text-[#9b4067]'
-              }`}
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
             >
-              +
-            </span>
-            <span className="border-b border-transparent pb-[2px] transition-colors group-hover:border-current">
-              CONTACTAR
-            </span>
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-4-4" />
+            </svg>
+            <span className="hidden md:inline">BUSCAR</span>
           </button>
 
           <div
             className={`hidden items-center gap-[18px] transition-opacity duration-500 xl:flex ${
-              isHeroTop ? 'opacity-0 pointer-events-none' : 'opacity-100'
+              isHeroTop ? 'pointer-events-none opacity-0' : 'opacity-100'
             }`}
           >
             <button
@@ -111,14 +115,14 @@ export function Navbar({
           </div>
         </div>
 
-        {/* Center: Gucci Scroll-Docking Wordmark (Starts in the Center of the Hero Banner -> Shrinks into Sticky Header on Scroll) */}
+        {/* Center: Scroll-Docking MODA AUSTRAL Wordmark (Centered with ample room on mobile & desktop) */}
         <button
           type="button"
           onClick={() => onNavigate('inicio')}
-          className={`absolute left-1/2 -translate-x-1/2 flex cursor-pointer items-center gap-[10px] whitespace-nowrap text-[16px] sm:text-[20px] font-medium uppercase leading-none transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`absolute left-1/2 -translate-x-1/2 flex cursor-pointer items-center gap-[8px] sm:gap-[10px] whitespace-nowrap font-medium uppercase leading-none transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isHeroTop
-              ? 'translate-y-[28vh] sm:translate-y-[31vh] scale-[2.4] sm:scale-[3.8] lg:scale-[5.2] text-[#de9fbd]'
-              : 'translate-y-0 scale-100 text-[#510f18]'
+              ? 'translate-y-[28vh] sm:translate-y-[31vh] text-[16px] sm:text-[20px] scale-[1.85] sm:scale-[3.5] lg:scale-[5.0] text-[#de9fbd]'
+              : 'translate-y-0 scale-100 text-[14px] sm:text-[19px] text-[#510f18]'
           }`}
         >
           <span
@@ -131,39 +135,18 @@ export function Navbar({
           <span>MODA AUSTRAL</span>
         </button>
 
-        {/* Right: Search, Consultation Bag Indicator, and Hamburger Menu Trigger */}
+        {/* Right: Consultation link (Desktop only) + Hamburger Icon (Icon-only on mobile, + "MENÚ" on sm+) */}
         <div
-          className={`z-10 flex items-center gap-[18px] sm:gap-[24px] transition-colors duration-500 ${
+          className={`z-10 flex items-center gap-[16px] sm:gap-[24px] transition-colors duration-500 ${
             isHeroTop ? 'text-[#f5ecda]' : 'text-[#510f18]'
           }`}
         >
           <button
             type="button"
-            onClick={onOpenSearch}
-            aria-label="Buscar prendas"
-            className="flex cursor-pointer items-center gap-[6px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-4-4" />
-            </svg>
-            <span className="hidden md:inline">BUSCAR</span>
-          </button>
-
-          <button
-            type="button"
             onClick={() => onNavigate('consulta')}
-            className="flex cursor-pointer items-center gap-[6px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75"
+            className="hidden md:flex cursor-pointer items-center gap-[6px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75"
           >
-            <span className="hidden sm:inline">TU CONSULTA</span>
+            <span>TU CONSULTA</span>
             {selectedReference && (
               <span className="rounded-full bg-[#9b4067] px-[8px] py-[3px] text-[10px] text-[#f5ecda]">
                 1
@@ -171,31 +154,31 @@ export function Navbar({
             )}
           </button>
 
-          {/* Gucci + Canva Prototype Hamburger Button */}
+          {/* Hamburger Button — Only the icon on mobile, no "MENÚ" text crowding the header */}
           <button
             type="button"
             onClick={onOpenMenu}
             aria-label="Abrir menú principal"
-            className="group flex cursor-pointer items-center gap-[10px] text-[12px] font-medium uppercase leading-none"
+            className="group flex h-[38px] w-[38px] sm:w-auto cursor-pointer items-center justify-end gap-[10px] text-[12px] font-medium uppercase leading-none"
           >
-            <span className="flex flex-col gap-[5px]">
+            <span className="flex flex-col items-end gap-[5px]">
               <span
-                className={`block h-[2px] w-[18px] transition-transform duration-300 group-hover:translate-x-[2px] ${
+                className={`block h-[2px] w-[20px] rounded-full transition-transform duration-300 group-hover:translate-x-[2px] ${
                   isHeroTop ? 'bg-[#f5ecda]' : 'bg-[#510f18]'
                 }`}
               />
               <span
-                className={`block h-[2px] w-[18px] transition-transform duration-300 group-hover:-translate-x-[2px] ${
+                className={`block h-[2px] w-[20px] rounded-full transition-transform duration-300 group-hover:-translate-x-[2px] ${
                   isHeroTop ? 'bg-[#f5ecda]' : 'bg-[#510f18]'
                 }`}
               />
               <span
-                className={`block h-[2px] w-[12px] transition-all duration-300 group-hover:w-[18px] ${
+                className={`block h-[2px] w-[14px] rounded-full transition-all duration-300 group-hover:w-[20px] ${
                   isHeroTop ? 'bg-[#de9fbd]' : 'bg-[#9b4067]'
                 }`}
               />
             </span>
-            <span>MENÚ</span>
+            <span className="hidden sm:inline">MENÚ</span>
           </button>
         </div>
       </div>
