@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta Oficial Página 9 y Prototipo Canva (Página 15) del PDF */
+  --color-austral-cream: #f5ecda;
+  --color-austral-burgundy: #510f18;
+  --color-austral-berry: #9b4067;
+  --color-austral-rose: #de9fbd;
+  --color-austral-butter: #fffbc3;
+
+  /* Mapeo de Tokens del Sistema (Fondo Crema #f5ecda + Tinta Burdeo #510f18 + Ciruela #9b4067 + Rosa #de9fbd) */
+  --color-walnut-shadow: #f5ecda;
+  --color-warm-cream: #510f18;
+  --color-bark-brown: #510f18;
+  --color-cork-border: #c992ad;
+  --color-driftwood: #844560;
+  --color-ember-accent: #9b4067;
+  --color-pure-black: #000000;
+
+  /* Typography — Font Families (Substitutes: Inter, Söhne, Neue Haas Grotesk) */
+  --font-halyard-display-variable: 'halyard-display-variable', 'Inter', 'Söhne', 'Neue Haas Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', system-ui, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Typography — Scale from docs/DESIGN.md */
+  --text-legal: 8px;
+  --leading-legal: 1.2;
+  --text-micro: 10px;
+  --leading-micro: 1.1;
+  --text-nav: 12px;
+  --leading-nav: 1.1;
+  --text-label: 14px;
+  --leading-label: 1.1;
+  --text-subheading: 18px;
+  --leading-subheading: 1;
+  --tracking-subheading: 0px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.09;
+  --tracking-heading-sm: 0px;
+  --text-body: 29px;
+  --leading-body: 1.26;
+  --tracking-body: 0px;
+  --text-heading: 41px;
+  --leading-heading: 0.9;
+  --tracking-heading: 0px;
+  --text-display: 51px;
+  --leading-display: 0.9;
+  --tracking-display: 0px;
+
+  /* Spacing Scale — Strictly from docs/DESIGN.md */
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-9: 9px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-31: 31px;
+  --spacing-41: 41px;
+  --spacing-45: 45px;
+  --spacing-68: 68px;
+  --spacing-204: 204px;
+
+  /* Border Radius Vocabulary */
+  --radius-none: 0px;
+  --radius-xl: 12px;
+  --radius-2xl: 22.5px;
+  --radius-3xl: 36px;
+  --radius-full: 9999px;
+}
+
+:root {
+  /* Paleta Oficial Página 9 del PDF */
+  --color-austral-cream: #f5ecda;
+  --color-austral-burgundy: #510f18;
+  --color-austral-berry: #9b4067;
+  --color-austral-rose: #de9fbd;
+  --color-austral-butter: #fffbc3;
+
+  --color-walnut-shadow: #f5ecda;
+  --color-warm-cream: #510f18;
+  --color-bark-brown: #510f18;
+  --color-cork-border: #c992ad;
+  --color-driftwood: #844560;
+  --color-ember-accent: #9b4067;
+  --color-pure-black: #000000;
+
+  --font-halyard-display-variable: 'halyard-display-variable', 'Inter', 'Söhne', 'Neue Haas Grotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arial: 'Arial', system-ui, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  --card-padding: 24px;
+  --element-gap: 18px;
+
+  --radius-cards: 12px;
+  --radius-inputs: 0px;
+  --radius-full-round: 9999px;
+  --radius-buttons-pill: 36px;
+  --radius-buttons-outlined: 22.5px;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-austral-cream);
+    color: var(--color-austral-burgundy);
+  }
+
+  body {
+    background-color: var(--color-austral-cream);
+    color: var(--color-austral-burgundy);
+    font-family: var(--font-halyard-display-variable);
+    font-feature-settings: "ss01" on;
+    letter-spacing: 0px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .type-display {
+    font-family: var(--font-halyard-display-variable);
+    font-size: clamp(38px, 6.5vw, var(--text-display));
+    line-height: var(--leading-display);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .type-masthead {
+    font-family: var(--font-halyard-display-variable);
+    font-size: clamp(41px, 11vw, 138px);
+    line-height: 0.88;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .type-heading {
+    font-family: var(--font-halyard-display-variable);
+    font-size: clamp(31px, 4.5vw, var(--text-heading));
+    line-height: var(--leading-heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .type-heading-sm {
+    font-family: var(--font-halyard-display-variable);
+    font-size: clamp(20px, 2.5vw, var(--text-heading-sm));
+    line-height: var(--leading-heading-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .type-subheading {
+    font-family: var(--font-halyard-display-variable);
+    font-size: var(--text-subheading);
+    line-height: var(--leading-subheading);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .type-nav {
+    font-family: var(--font-halyard-display-variable);
+    font-size: 12px;
+    line-height: 1.1;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .type-body-conversational {
+    font-family: var(--font-halyard-display-variable);
+    font-size: clamp(20px, 2.3vw, var(--text-body));
+    line-height: var(--leading-body);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0px;
+  }
+
+  .type-legal {
+    font-family: var(--font-arial);
+    font-size: 8px;
+    line-height: 1.2;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out both;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-hero-zoom {
+    animation: heroZoom 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
