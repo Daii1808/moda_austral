@@ -11,8 +11,7 @@ interface SearchOverlayProps {
 }
 
 /**
- * Gucci-inspired Top Search Drawer Overlay
- * Instant filtering by garment name, category, branch, or reference code (e.g. LEN-0042).
+ * Top Search Drawer Overlay — Instant catalog filtering (No sale prices, pure reference catalog)
  */
 export function SearchOverlay({
   isOpen,
@@ -37,6 +36,7 @@ export function SearchOverlay({
     ? GARMENT_CATALOG.filter(
         (item) =>
           item.name.toLowerCase().includes(normalized) ||
+          item.subtitle.toLowerCase().includes(normalized) ||
           item.refCode.toLowerCase().includes(normalized) ||
           item.categoryLabel.toLowerCase().includes(normalized) ||
           item.branch.toLowerCase().includes(normalized),
@@ -47,11 +47,10 @@ export function SearchOverlay({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Buscador de prendas Moda Austral"
-      className="fixed inset-0 z-50 flex flex-col bg-walnut-shadow/95 backdrop-blur-md px-[18px] py-[24px] sm:px-[45px] animate-fade-in overflow-y-auto"
+      aria-label="Buscador de catálogo Moda Austral"
+      className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-walnut-shadow/95 px-[24px] py-[31px] backdrop-blur-md sm:px-[56px] animate-fade-in"
     >
       <div className="mx-auto w-full max-w-[1280px]">
-        {/* Header */}
         <div className="flex items-center justify-between pb-[24px]">
           <span className="text-[12px] font-medium uppercase text-ember-accent">
             BUSCADOR DE CATÁLOGO · MODA AUSTRAL
@@ -65,24 +64,22 @@ export function SearchOverlay({
           </button>
         </div>
 
-        {/* Underline Search Input per docs/DESIGN.md */}
         <div className="my-[18px]">
           <UnderlineInput
             autoFocus
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="BUSCAR POR PRENDA, CATEGORÍA, SUCURSAL O CÓDIGO (EJ: LEN-0042, ABRIGO, BOTÍN)..."
-            className="py-[12px] text-[18px] sm:text-[24px]"
+            placeholder="BUSCAR POR PRENDA, CATEGORÍA O SUCURSAL (EJ: VESTIDOS, BOTÍN, CROCHET, PERFUMERÍA)..."
+            className="py-[12px] text-[16px] sm:text-[22px]"
           />
         </div>
 
-        {/* Quick Trending Searches */}
         <div className="mt-[18px] flex flex-wrap items-center gap-[14px]">
           <span className="text-[10px] font-medium uppercase text-driftwood">
-            BÚSQUEDAS RÁPIDAS:
+            EXPLORAR CATEGORÍAS:
           </span>
-          {(['vestuario', 'calzado', 'textiles'] as const).map((cat) => (
+          {(['vestuario', 'calzado', 'textiles', 'accesorios'] as const).map((cat) => (
             <button
               key={cat}
               type="button"
@@ -95,26 +92,18 @@ export function SearchOverlay({
               {cat.toUpperCase()}
             </button>
           ))}
-          <button
-            type="button"
-            onClick={() => setQuery('LEN-0042')}
-            className="cursor-pointer border-b border-dashed border-cork-border pb-[2px] text-[12px] font-medium uppercase text-ember-accent"
-          >
-            REF. LEN-0042
-          </button>
         </div>
 
-        <SectionDivider className="my-[31px]" />
+        <SectionDivider className="my-[36px]" />
 
-        {/* Live Product Grid Results */}
         <div>
           <span className="text-[12px] font-medium uppercase text-warm-cream/80">
             {normalized
-              ? `RESULTADOS ENCONTRADOS (${results.length})`
-              : 'PIEZAS DESTACADAS DEL ARCHIVO'}
+              ? `RESULTADOS EN EL CATÁLOGO (${results.length})`
+              : 'EJEMPLOS DESTACADOS DEL CATÁLOGO'}
           </span>
 
-          <div className="mt-[24px] grid grid-cols-2 gap-[18px] md:grid-cols-4">
+          <div className="mt-[28px] grid grid-cols-2 gap-x-[24px] gap-y-[36px] md:grid-cols-4">
             {results.map((item) => (
               <button
                 key={item.id}
@@ -132,15 +121,12 @@ export function SearchOverlay({
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="mt-[12px] flex flex-col gap-[4px]">
+                <div className="mt-[16px] flex flex-col gap-[6px]">
                   <span className="text-[10px] font-medium uppercase text-ember-accent">
-                    REF. {item.refCode} · {item.branch.toUpperCase()}
+                    {item.categoryLabel} · {item.branch.toUpperCase()}
                   </span>
-                  <span className="text-[14px] font-medium uppercase text-warm-cream">
+                  <span className="text-[13px] font-medium uppercase leading-[1.3] text-warm-cream group-hover:underline">
                     {item.name}
-                  </span>
-                  <span className="text-[12px] font-medium uppercase text-warm-cream/75">
-                    TALLA {item.size} · {item.price}
                   </span>
                 </div>
               </button>

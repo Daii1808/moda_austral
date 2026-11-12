@@ -16,7 +16,9 @@ interface ProductDetailSectionProps {
 }
 
 /**
- * Dedicated Product Detail Page (PDP) — Spacious Gucci.com product sheet
+ * Dedicated Catalog Reference Sheet (Ficha Referencial)
+ * Displays the real store photographs, reference specifications, and direct consultation trigger
+ * without checkout or pricing.
  */
 export function ProductDetailSection({
   garment,
@@ -68,9 +70,9 @@ export function ProductDetailSection({
 
         <SectionDivider className="mb-[48px] sm:mb-[64px]" />
 
-        {/* Main Split PDP Layout with Generous Gap */}
+        {/* Main Split Reference Sheet Layout with Generous Gap */}
         <div className="grid grid-cols-1 items-start gap-[48px] lg:grid-cols-12 lg:gap-[64px]">
-          {/* Left: Editorial Image Gallery */}
+          {/* Left: Real Store Image Gallery */}
           <div className="flex flex-col gap-[20px] lg:col-span-7">
             <div className="aspect-[4/5] w-full overflow-hidden bg-bark-brown">
               <img
@@ -81,39 +83,41 @@ export function ProductDetailSection({
               />
             </div>
 
-            <div className="grid grid-cols-3 gap-[20px]">
-              {garment.galleryImages.map((imgUrl, idx) => {
-                const isSelected = displayImage === imgUrl;
-                return (
-                  <button
-                    key={imgUrl}
-                    type="button"
-                    onClick={() => setActiveImage(imgUrl)}
-                    className={`cursor-pointer overflow-hidden border transition-opacity ${
-                      isSelected
-                        ? 'border-warm-cream opacity-100'
-                        : 'border-transparent opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img
-                      src={imgUrl}
-                      alt={`${garment.name} vista ${idx + 1}`}
-                      className="aspect-[4/5] w-full object-cover"
-                    />
-                  </button>
-                );
-              })}
-            </div>
+            {garment.galleryImages.length > 1 && (
+              <div className="grid grid-cols-3 gap-[16px] sm:gap-[20px]">
+                {garment.galleryImages.map((imgUrl, idx) => {
+                  const isSelected = displayImage === imgUrl;
+                  return (
+                    <button
+                      key={imgUrl}
+                      type="button"
+                      onClick={() => setActiveImage(imgUrl)}
+                      className={`cursor-pointer overflow-hidden border transition-opacity ${
+                        isSelected
+                          ? 'border-warm-cream opacity-100'
+                          : 'border-transparent opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <img
+                        src={imgUrl}
+                        alt={`${garment.name} vista ${idx + 1}`}
+                        className="aspect-[4/5] w-full object-cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
-          {/* Right: Clean Scannable Product Info with Breathing Room */}
+          {/* Right: Scannable Reference Sheet Info with Breathing Room */}
           <div className="flex flex-col items-start gap-[24px] lg:sticky lg:top-[112px] lg:col-span-5">
-            <div className="flex w-full items-center justify-between">
+            <div className="flex w-full flex-wrap items-center justify-between gap-[8px]">
               <span className="text-[11px] font-medium uppercase text-ember-accent">
                 REF. {garment.refCode} · {garment.branch.toUpperCase()}
               </span>
-              <span className="text-[22px] font-medium uppercase text-warm-cream">
-                {garment.price}
+              <span className="bg-[#510f18] px-[10px] py-[4px] text-[10px] font-medium uppercase text-[#fffbc3]">
+                {garment.availabilityNote}
               </span>
             </div>
 
@@ -129,7 +133,7 @@ export function ProductDetailSection({
             <div className="flex w-full flex-col gap-[16px]">
               <div className="flex items-center justify-between border-b border-dashed border-cork-border pb-[12px]">
                 <span className="text-[11px] font-medium uppercase text-driftwood">
-                  TALLA
+                  TALLA / FORMATO
                 </span>
                 <span className="text-[13px] font-medium uppercase text-warm-cream">
                   {garment.size}
@@ -138,16 +142,16 @@ export function ProductDetailSection({
 
               <div className="flex items-center justify-between border-b border-dashed border-cork-border pb-[12px]">
                 <span className="text-[11px] font-medium uppercase text-driftwood">
-                  MEDIDAS
+                  DETALLE REFERENCIAL
                 </span>
-                <span className="text-[13px] font-medium uppercase text-warm-cream">
+                <span className="text-[13px] font-medium uppercase text-warm-cream text-right">
                   {garment.measurements}
                 </span>
               </div>
 
               <div className="flex items-center justify-between border-b border-dashed border-cork-border pb-[12px]">
                 <span className="text-[11px] font-medium uppercase text-driftwood">
-                  ESTADO
+                  CLASIFICACIÓN
                 </span>
                 <span className="text-[13px] font-medium uppercase text-ember-accent">
                   {garment.condition}
@@ -156,13 +160,17 @@ export function ProductDetailSection({
 
               <div className="flex items-center justify-between pb-[4px]">
                 <span className="text-[11px] font-medium uppercase text-driftwood">
-                  SUCURSAL
+                  SUCURSAL DE REFERENCIA
                 </span>
                 <span className="text-[13px] font-medium uppercase text-warm-cream">
                   {garment.branch.toUpperCase()}
                 </span>
               </div>
             </div>
+
+            <p className="text-[12px] leading-[1.5] text-driftwood">
+              Ejemplos referenciales, sin stock garantizado. La disponibilidad, las reservas y las condiciones de compra se confirman directamente con la tienda.
+            </p>
 
             <SectionDivider className="my-[8px]" />
 
@@ -171,13 +179,13 @@ export function ProductDetailSection({
                 onClick={() =>
                   onInquireGarment(
                     garment.category,
-                    `${garment.refCode} — ${garment.name} (Talla ${garment.size})`,
+                    `${garment.refCode} — ${garment.name}`,
                     garment.branch,
                   )
                 }
                 className="w-full sm:w-auto"
               >
-                CONSULTAR EN WHATSAPP
+                CONSULTAR DISPONIBILIDAD
               </PillButton>
 
               <GhostButton onClick={() => onNavigate('como-comprar')}>
@@ -187,13 +195,13 @@ export function ProductDetailSection({
           </div>
         </div>
 
-        {/* Related Pieces with Generous Space */}
+        {/* Related Reference Pieces with Generous Space */}
         <div className="mt-[88px] sm:mt-[112px]">
           <SectionDivider className="mb-[48px] sm:mb-[60px]" />
           <h2 className="mb-[36px] text-[15px] font-medium uppercase text-warm-cream sm:mb-[44px]">
-            TAMBIÉN TE PUEDE INTERESAR
+            OTROS EJEMPLOS DEL CATÁLOGO
           </h2>
-          <div className="grid grid-cols-2 gap-x-[24px] gap-y-[48px] sm:gap-x-[32px] lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-x-[24px] gap-y-[48px] sm:grid-cols-2 sm:gap-x-[32px] lg:grid-cols-4">
             {relatedGarments.map((item) => (
               <article
                 key={item.id}
@@ -211,11 +219,14 @@ export function ProductDetailSection({
                   />
                 </div>
                 <div className="mt-[18px] flex flex-col gap-[6px] sm:mt-[22px]">
+                  <span className="text-[10px] font-medium uppercase text-ember-accent">
+                    {item.categoryLabel}
+                  </span>
                   <span className="text-[13px] font-medium uppercase leading-[1.3] text-warm-cream group-hover:underline">
                     {item.name}
                   </span>
-                  <span className="text-[12px] font-medium uppercase text-driftwood">
-                    {item.price} · TALLA {item.size}
+                  <span className="text-[11px] font-medium uppercase text-driftwood">
+                    {item.availabilityNote} · TALLA {item.size}
                   </span>
                 </div>
               </article>

@@ -25,64 +25,64 @@ const PRIMARY_MENU_ITEMS: PrimaryNavItem[] = [
     id: 'inicio',
     label: 'INICIO',
     page: 'inicio',
-    previewImage: '/images/hero-rack.jpg',
-    previewCaption: 'UN NUEVO ENCUENTRO · COLECCIÓN 2026',
+    previewImage: '/images/catalogo/ma-03.jpg',
+    previewCaption: 'UN NUEVO ENCUENTRO · GUÍA DIGITAL Y CATÁLOGO',
   },
   {
     id: 'catalogo',
     label: 'CATEGORÍAS',
     page: 'categorias',
     category: 'all',
-    previewImage: '/images/vestuario-poleron.jpg',
-    previewCaption: 'VESTUARIO, CALZADO Y TEXTILES REUTILIZADOS',
+    previewImage: '/images/catalogo/ma-26.jpg',
+    previewCaption: 'VESTUARIO, CALZADO, TEXTILES Y ACCESORIOS',
     subItems: [
       { label: 'VER TODO EL CATÁLOGO', category: 'all' },
       { label: 'VESTUARIO REUTILIZADO', category: 'vestuario' },
-      { label: 'CALZADO REACONDICIONADO', category: 'calzado' },
+      { label: 'CALZADO REUTILIZADO', category: 'calzado' },
       { label: 'TEXTILES & BOLSOS', category: 'textiles' },
+      { label: 'ACCESORIOS & BELLEZA', category: 'accesorios' },
     ],
-  },
-  {
-    id: 'moda-circular',
-    label: 'MODA CIRCULAR',
-    page: 'moda-circular',
-    previewImage: '/images/moda-circular-empaque.jpg',
-    previewCaption: 'REUTILIZAR PRENDAS Y PROLONGAR SU USO',
   },
   {
     id: 'como-comprar',
     label: 'CÓMO COMPRAR',
     page: 'como-comprar',
-    previewImage: '/images/etiqueta-prenda.jpg',
+    previewImage: '/images/catalogo/ma-18.jpg',
     previewCaption: '01 ELIGE · 02 CONSULTA · 03 ESPERA CONFIRMACIÓN · 04 COORDINA',
   },
   {
     id: 'sucursales',
     label: 'SUCURSALES',
     page: 'sucursales',
-    previewImage: '/images/sucursal-lenca.jpg',
+    previewImage: '/images/catalogo/ma-25.jpg',
     previewCaption: 'LENCA (CASA MATRIZ) & PUERTO MONTT',
   },
   {
     id: 'preguntas-frecuentes',
     label: 'PREGUNTAS FRECUENTES',
     page: 'preguntas-frecuentes',
-    previewImage: '/images/empaque-bolsa.jpg',
-    previewCaption: 'STOCK REFERENCIAL, TALLAS, RESERVAS Y ENTREGAS',
+    previewImage: '/images/catalogo/ma-19.jpg',
+    previewCaption: 'EJEMPLOS REFERENCIALES, TALLAS, RESERVAS Y RETIROS',
+  },
+  {
+    id: 'moda-circular',
+    label: 'MODA CIRCULAR',
+    page: 'moda-circular',
+    previewImage: '/images/catalogo/ma-17.jpg',
+    previewCaption: 'OFERTA, REUTILIZACIÓN Y EVALUACIÓN DE ESTADO',
   },
   {
     id: 'consulta',
-    label: 'TU CONSULTA WHATSAPP',
+    label: 'TU CONSULTA',
     page: 'consulta',
-    previewImage: '/images/empaque-sello.jpg',
-    previewCaption: 'ATENCIÓN DIRECTA CON LA TIENDA',
+    previewImage: '/images/catalogo/ma-12.jpg',
+    previewCaption: 'PREPARAR CONSULTA PARA WHATSAPP',
   },
 ];
 
 /**
- * Gucci-inspired Slide-Over Hamburger Navigation Drawer + Frame 09_Menu_Movil 1
- * Clean typography, zero nested cards, interactive category accordion,
- * rotating circular close button, and live editorial image preview on desktop.
+ * Slide-Over Hamburger Navigation Drawer — Matches PDF Page 13 & Page 15 (Canva Prototype)
+ * Order: INICIO, CATEGORÍAS, CÓMO COMPRAR, SUCURSALES, PREGUNTAS FRECUENTES, MODA CIRCULAR, TU CONSULTA.
  */
 export function MenuDrawer({
   isOpen,
@@ -118,19 +118,17 @@ export function MenuDrawer({
       aria-label="Menú principal de Moda Austral"
       className="fixed inset-0 z-50 flex justify-end"
     >
-      {/* Dark Burgundy Backdrop Overlay */}
       <div
         onClick={onClose}
         className="animate-fade-in fixed inset-0 bg-[#510f18]/65 backdrop-blur-xs"
       />
 
-      {/* Slide-Over Panel (Gucci Split: Dark Burgundy Editorial Preview on lg + #f5ecda Cream Navigation Drawer on Right per PDF Page 15) */}
       <div className="animate-slide-in-right relative z-10 flex h-full w-full max-w-[1040px] border-l border-dashed border-cork-border bg-[#f5ecda]">
-        {/* Left Editorial Preview Column (Visible on Desktop lg+ in Deep Burgundy #510f18) */}
+        {/* Left Editorial Preview Column (Desktop lg+) */}
         <div className="hidden w-[440px] flex-col justify-between border-r border-dashed border-[#de9fbd]/35 bg-[#510f18] p-[41px] text-[#f5ecda] lg:flex">
           <div>
             <span className="text-[10px] font-medium uppercase text-[#de9fbd]">
-              MODA AUSTRAL · ARCHIVO VISUAL
+              MODA AUSTRAL · CATÁLOGO DIGITAL
             </span>
             <p className="mt-[8px] text-[12px] font-medium uppercase text-[#f5ecda]">
               {hoveredItem.previewCaption}
@@ -151,14 +149,13 @@ export function MenuDrawer({
               LENCA · CASA MATRIZ & PUERTO MONTT
             </span>
             <span className="type-legal text-[#de9fbd]">
-              * VESTUARIO, CALZADO Y TEXTILES REUTILIZADOS
+              * GUÍA INFORMATIVA Y CATÁLOGO REFERENCIAL
             </span>
           </div>
         </div>
 
-        {/* Right Navigation Column (Main Hamburger Links matching Canva Prototype on PDF Page 15) */}
+        {/* Right Navigation Column */}
         <div className="flex flex-1 flex-col justify-between overflow-y-auto px-[24px] py-[24px] sm:px-[45px] sm:py-[31px]">
-          {/* Drawer Header with MA Logo & Circular Close Button */}
           <div>
             <div className="flex items-center justify-between pb-[24px]">
               <ModaAustralLogo size="sm" />
@@ -174,8 +171,7 @@ export function MenuDrawer({
             <SectionDivider />
           </div>
 
-          {/* Primary Navigation List — Borderless, Expansive Typography */}
-          <nav aria-label="Secciones de la tienda" className="my-[31px] flex flex-col gap-[18px]">
+          <nav aria-label="Secciones del sitio" className="my-[31px] flex flex-col gap-[18px]">
             {PRIMARY_MENU_ITEMS.map((item) => {
               const isCurrent = currentPage === item.page;
               const hasSubItems = Boolean(item.subItems);
@@ -211,7 +207,6 @@ export function MenuDrawer({
                     )}
                   </div>
 
-                  {/* Expandable Sub-Categories for Store Catalog */}
                   {hasSubItems && categoriesExpanded && (
                     <div className="mt-[12px] ml-[18px] flex flex-col gap-[10px] border-l border-dashed border-cork-border pl-[18px]">
                       {item.subItems?.map((sub) => {
@@ -240,7 +235,6 @@ export function MenuDrawer({
             })}
           </nav>
 
-          {/* Bottom Actions & Quick Footer from Figma 09_Menu_Movil 1 */}
           <div>
             <SectionDivider className="mb-[24px]" />
             <div className="flex flex-wrap items-center justify-between gap-[18px]">
@@ -255,35 +249,6 @@ export function MenuDrawer({
               >
                 CERRAR MENÚ
               </button>
-            </div>
-
-            <div className="mt-[24px] flex flex-wrap items-center justify-between gap-[12px] text-[12px] font-medium uppercase text-warm-cream/75">
-              <span>MODA AUSTRAL · MODA CIRCULAR</span>
-              <div className="flex items-center gap-[12px]">
-                <button
-                  type="button"
-                  onClick={() => handleSelect('inicio')}
-                  className="cursor-pointer hover:text-warm-cream"
-                >
-                  INICIO
-                </button>
-                <span>|</span>
-                <button
-                  type="button"
-                  onClick={() => handleSelect('sucursales')}
-                  className="cursor-pointer hover:text-warm-cream"
-                >
-                  SUCURSALES
-                </button>
-                <span>|</span>
-                <button
-                  type="button"
-                  onClick={() => handleSelect('consulta')}
-                  className="cursor-pointer hover:text-warm-cream"
-                >
-                  CONSULTA
-                </button>
-              </div>
             </div>
           </div>
         </div>

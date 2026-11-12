@@ -13,34 +13,28 @@ function assert(condition, message) {
   console.log(`✓ PASS: ${message}`);
 }
 
-// 1. Verify all 16 brand & editorial product images exist and are non-empty
-const requiredImages = [
-  'hero-rack.jpg',
-  'vestuario-poleron.jpg',
-  'vestuario-perchero.jpg',
-  'etiqueta-prenda.jpg',
-  'etiqueta-reciclaje.jpg',
-  'calzado-editorial.jpg',
-  'calzado-botin-lateral.jpg',
-  'textiles-totebag.jpg',
-  'textiles-bufanda-editorial.jpg',
-  'abrigo-lana-editorial.jpg',
-  'chaqueta-denim-editorial.jpg',
-  'moda-circular-empaque.jpg',
-  'empaque-bolsa.jpg',
-  'empaque-sello.jpg',
-  'sucursal-lenca.jpg',
-  'sucursal-puerto-montt.jpg',
-];
-
-for (const img of requiredImages) {
-  const fullPath = path.join(rootDir, 'public', 'images', img);
-  assert(fs.existsSync(fullPath), `Imagen presente: public/images/${img}`);
+// 1. Verify all 29 real store photographs (ma-01.jpg .. ma-29.jpg) exist in public/images/catalogo/
+const productsCode = fs.readFileSync(path.join(rootDir, 'src/data/products.ts'), 'utf8');
+for (let i = 1; i <= 29; i++) {
+  const num = String(i).padStart(2, '0');
+  const fileName = `ma-${num}.jpg`;
+  const fullPath = path.join(rootDir, 'public', 'images', 'catalogo', fileName);
+  assert(fs.existsSync(fullPath), `Fotografía real de tienda presente: public/images/catalogo/${fileName}`);
   const stat = fs.statSync(fullPath);
-  assert(stat.size > 10000, `Imagen válida (>10KB): ${img} (${stat.size} bytes)`);
+  assert(stat.size > 10000, `Fotografía optimizada válida (>10KB): ${fileName} (${stat.size} bytes)`);
+  assert(
+    productsCode.includes(`/images/catalogo/${fileName}`),
+    `Fotografía ${fileName} integrada en el catálogo/secciones (src/data/products.ts)`,
+  );
 }
 
-// 2. Verify all 8 prototype pages & Gucci navigation components exist as separate views
+// 2. Verify pure reference catalog (zero $ prices) and 4 catalog categories
+assert(!productsCode.includes('$'), 'Catálogo 100% referencial sin precios de venta directa ($)');
+for (const catId of ["id: 'vestuario'", "id: 'calzado'", "id: 'textiles'", "id: 'accesorios'"]) {
+  assert(productsCode.includes(catId), `Categoría de catálogo verificada en products.ts: ${catId}`);
+}
+
+// 3. Verify all 8 prototype pages & navigation components exist as separate views with zero shadows
 const requiredComponents = [
   'src/components/layout/Navbar.tsx',
   'src/components/layout/MenuDrawer.tsx',
@@ -69,10 +63,18 @@ for (const rel of requiredComponents) {
   }
 }
 
-// 3. Verify strict PDF Page 9 & Canva Prototype color tokens and responsive fluid scales in globals.css
+// 4. Verify strict PDF Page 9 & DESIGN.md color/typography tokens and responsive fluid scales in globals.css
 const css = fs.readFileSync(path.join(rootDir, 'src/styles/globals.css'), 'utf8');
-for (const token of ['#f5ecda', '#510f18', '#9b4067', '#de9fbd', '#fffbc3']) {
-  assert(css.includes(token), `Token de color PDF Página 9 / Prototipo Canva verificado en globals.css: ${token}`);
+for (const token of [
+  '#f5ecda',
+  '#510f18',
+  '#9b4067',
+  '#de9fbd',
+  '#fffbc3',
+  '--font-halyard-display-variable',
+  '--font-arial',
+]) {
+  assert(css.includes(token), `Token de diseño PDF / DESIGN.md verificado en globals.css: ${token}`);
 }
 assert(
   css.includes('clamp('),
@@ -83,4 +85,4 @@ assert(
   'Monograma oficial MA (ModaAustralLogo.tsx) verificado',
 );
 
-console.log('\nTODAS LAS PRUEBAS DE ESTRUCTURA, PALETA PDF PÁG. 9, PROTOTIPO Y RESPONSIVIDAD PASARON EXITOSAMENTE.');
+console.log('\nTODAS LAS PRUEBAS DE CATÁLOGO REFERENCIAL (29 FOTOS REALES, 4 CATEGORÍAS, DESIGN.MD Y RESPONSIVIDAD) PASARON EXITOSAMENTE.');

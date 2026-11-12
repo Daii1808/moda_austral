@@ -7,6 +7,7 @@ interface CircularFashionSectionProps {
 
 /**
  * Dedicated Moda Circular Page — Spacious visual layout with generous margins between photos & text
+ * Uses real store interior photography from Moda Austral (`ma-26.jpg`, `ma-18.jpg`, `ma-25.jpg`, `ma-29.jpg`).
  */
 export function CircularFashionSection({ onNavigate }: CircularFashionSectionProps) {
   return (
@@ -14,7 +15,7 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-[36px] flex flex-wrap items-center justify-between gap-[16px]">
           <span className="text-[11px] font-medium uppercase text-ember-accent">
-            MODA CIRCULAR
+            MODA CIRCULAR · IDENTIDAD REUTILIZABLE
           </span>
           <UnderlineLink
             href="#inicio"
@@ -34,15 +35,15 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
           <div className="flex flex-col items-start gap-[16px] lg:col-span-4">
             <h1 className="type-heading text-warm-cream">UN NUEVO ENCUENTRO</h1>
             <p className="text-[14px] font-medium uppercase text-ember-accent">
-              REUTILIZAR PRENDAS Y PROLONGAR SU USO.
+              ROPA CON SEGUNDA VIDA Y REUTILIZACIÓN CONSCIENTE.
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center lg:col-span-4">
             <div className="aspect-[4/5] w-full overflow-hidden bg-bark-brown">
               <img
-                src="/images/moda-circular-empaque.jpg"
-                alt="Empaque Moda Austral"
+                src="/images/catalogo/ma-26.jpg"
+                alt="Interior Moda Austral"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
@@ -50,7 +51,7 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
 
           <div className="flex flex-col items-start gap-[28px] lg:col-span-4">
             <p className="text-[16px] leading-[1.65] text-warm-cream">
-              Seleccionamos, higienizamos y medimos cada pieza en Lenca y Puerto Montt para darle una segunda vida.
+              En Moda Austral trabajamos con prendas únicas y moda circular en Lenca y Puerto Montt, prolongando el uso de vestuario, calzado, textiles y accesorios seleccionados.
             </p>
             <div className="flex flex-wrap items-center gap-[16px]">
               <PillButton onClick={() => onNavigate('categorias', 'all')}>
@@ -70,8 +71,8 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
           <div className="flex flex-col">
             <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
               <img
-                src="/images/etiqueta-reciclaje.jpg"
-                alt="Qué puedes encontrar"
+                src="/images/catalogo/ma-18.jpg"
+                alt="Qué puedes encontrar en Moda Austral"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -79,15 +80,15 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
               QUÉ PUEDES ENCONTRAR
             </h2>
             <p className="mt-[10px] text-[15px] leading-[1.55] text-warm-cream/85">
-              Vestuario, calzado y textiles seleccionados pieza a pieza.
+              Vestuario seleccionado, calzado en cuero y gamuza, tejidos artesanales a crochet, bolsos y accesorios con rotación constante.
             </p>
           </div>
 
           <div className="flex flex-col">
             <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
               <img
-                src="/images/etiqueta-prenda.jpg"
-                alt="Antes de elegir"
+                src="/images/catalogo/ma-25.jpg"
+                alt="Antes de elegir en Moda Austral"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -95,7 +96,7 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
               ANTES DE ELEGIR
             </h2>
             <p className="mt-[10px] text-[15px] leading-[1.55] text-warm-cream/85">
-              Revisa siempre la talla, medidas en centímetros y sucursal de cada prenda.
+              Como el stock varía por tratarse de prendas únicas, revisa siempre la categoría, talla referencial y sucursal antes de consultar o visitar.
             </p>
           </div>
         </div>

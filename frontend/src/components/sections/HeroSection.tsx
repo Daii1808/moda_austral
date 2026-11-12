@@ -8,8 +8,9 @@ interface HeroSectionProps {
 }
 
 /**
- * Inicio Page (Storefront) — Generous Luxury Spacing + Gucci Visual Rhythm
- * Wide margins, breathing room between sections, and ample gap between images and text.
+ * Inicio Page (Catálogo Digital & Guía Informativa)
+ * Uses real store photography from Moda Austral, 4 catalog categories + Moda Circular banner,
+ * generous spacing between sections and image captions, and zero checkout/price UI.
  */
 export function HeroSection({
   onNavigate,
@@ -23,9 +24,9 @@ export function HeroSection({
       <section className="relative flex min-h-screen w-screen flex-col justify-between overflow-hidden bg-[#510f18] px-[24px] pt-[96px] pb-[64px] sm:px-[56px] sm:pb-[80px]">
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <img
-            src="/images/hero-rack.jpg"
-            alt="Colección Moda Austral"
-            className="animate-hero-zoom h-full w-full object-cover opacity-60 contrast-115"
+            src="/images/catalogo/ma-03.jpg"
+            alt="Catálogo Moda Austral"
+            className="animate-hero-zoom h-full w-full object-cover opacity-65 contrast-110"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#510f18]/75 via-[#510f18]/35 to-[#510f18]/90" />
         </div>
@@ -33,10 +34,10 @@ export function HeroSection({
         {/* Top spacer for the scroll-docking MODA AUSTRAL wordmark from Navbar */}
         <div className="relative z-10 pt-[76px]" aria-hidden="true" />
 
-        {/* Bottom Centered Campaign Lockup — Refined Gucci campaign subtitle (much smaller than MODA AUSTRAL) */}
+        {/* Bottom Centered Campaign Lockup — Subtitle smaller than MODA AUSTRAL */}
         <div className="relative z-10 mx-auto flex w-full max-w-[760px] flex-col items-center gap-[16px] text-center animate-fade-up">
           <span className="inline-block bg-[#9b4067] px-[14px] py-[6px] text-[10px] font-medium uppercase tracking-wider text-[#fffbc3]">
-            COLECCIÓN CIRCULAR · LENCA & PUERTO MONTT
+            CATÁLOGO REFERENCIAL · LENCA & PUERTO MONTT
           </span>
           <h2 className="text-[18px] sm:text-[24px] font-medium uppercase tracking-[0.12em] text-[#f5ecda]">
             UN NUEVO ENCUENTRO
@@ -48,7 +49,7 @@ export function HeroSection({
               onClick={() => onNavigate('categorias', 'all')}
               className="inline-flex cursor-pointer items-center justify-center rounded-[36px] bg-[#f5ecda] px-[28px] py-[15px] text-[12px] font-medium uppercase leading-none text-[#510f18] transition-colors hover:bg-[#de9fbd]"
             >
-              EXPLORAR COLECCIÓN
+              EXPLORAR CATÁLOGO
             </button>
             <button
               type="button"
@@ -61,10 +62,15 @@ export function HeroSection({
         </div>
       </section>
 
-      {/* 2. Gucci Split Category Showcases — Generous top/bottom padding & grid gaps */}
+      {/* 2. 4 Catalog Category Showcases + Moda Circular Editorial Banner */}
       <section className="mx-auto max-w-[1440px] px-[24px] py-[80px] sm:px-[56px] sm:py-[112px]">
         <div className="mb-[48px] flex flex-col items-center justify-between gap-[16px] text-center sm:mb-[64px] sm:flex-row sm:items-end sm:text-left">
-          <h2 className="type-heading text-warm-cream">CATEGORÍAS</h2>
+          <div className="flex flex-col gap-[8px]">
+            <span className="text-[11px] font-medium uppercase text-ember-accent">
+              GUÍA DE CATEGORÍAS
+            </span>
+            <h2 className="type-heading text-warm-cream">CATÁLOGO POR CATEGORÍA</h2>
+          </div>
           <UnderlineLink
             href="#categorias"
             onClick={(e) => {
@@ -76,109 +82,152 @@ export function HeroSection({
           </UnderlineLink>
         </div>
 
+        {/* Row 1: Vestuario & Calzado */}
         <div className="grid grid-cols-1 gap-[28px] sm:gap-[36px] md:grid-cols-2">
-          {/* Vestuario */}
+          {/* 1. Vestuario */}
           <div
             onClick={() => onNavigate('categorias', 'vestuario')}
-            className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[36px] text-center sm:p-[52px]"
+            className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[32px] text-center sm:p-[48px]"
           >
             <img
-              src="/images/abrigo-lana-editorial.jpg"
+              src="/images/catalogo/ma-26.jpg"
               alt="Vestuario Moda Austral"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/90 via-[#510f18]/20 to-transparent" />
-            <div className="relative z-10 flex flex-col items-center gap-[14px]">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/92 via-[#510f18]/25 to-transparent" />
+            <div className="relative z-10 flex flex-col items-center gap-[12px]">
+              <span className="text-[11px] font-medium uppercase tracking-wider text-[#fffbc3]">
+                VESTIDOS · CAMISAS · DENIM · INFANTIL
+              </span>
               <h3 className="type-heading text-[#f5ecda]">VESTUARIO</h3>
               <span className="border-b border-[#f5ecda] pb-[4px] text-[12px] font-medium uppercase text-[#f5ecda]">
-                EXPLORAR →
+                EXPLORAR CATEGORÍA →
               </span>
             </div>
           </div>
 
-          {/* Calzado */}
+          {/* 2. Calzado */}
           <div
             onClick={() => onNavigate('categorias', 'calzado')}
-            className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[36px] text-center sm:p-[52px]"
+            className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[32px] text-center sm:p-[48px]"
           >
             <img
-              src="/images/calzado-editorial.jpg"
+              src="/images/catalogo/ma-01.jpg"
               alt="Calzado Moda Austral"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/90 via-[#510f18]/20 to-transparent" />
-            <div className="relative z-10 flex flex-col items-center gap-[14px]">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/92 via-[#510f18]/25 to-transparent" />
+            <div className="relative z-10 flex flex-col items-center gap-[12px]">
+              <span className="text-[11px] font-medium uppercase tracking-wider text-[#fffbc3]">
+                BOTINES · MOCASINES · TACONES
+              </span>
               <h3 className="type-heading text-[#f5ecda]">CALZADO</h3>
               <span className="border-b border-[#f5ecda] pb-[4px] text-[12px] font-medium uppercase text-[#f5ecda]">
-                EXPLORAR →
+                EXPLORAR CATEGORÍA →
               </span>
             </div>
           </div>
         </div>
 
-        {/* Second Row: Textiles + Moda Circular */}
+        {/* Row 2: Textiles & Bolsos + Accesorios & Belleza */}
         <div className="mt-[28px] grid grid-cols-1 gap-[28px] sm:mt-[36px] sm:gap-[36px] md:grid-cols-2">
-          {/* Textiles */}
+          {/* 3. Textiles & Bolsos */}
           <div
             onClick={() => onNavigate('categorias', 'textiles')}
-            className="group relative flex aspect-[16/10] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[36px] text-center sm:p-[52px]"
+            className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[32px] text-center sm:p-[48px]"
           >
             <img
-              src="/images/textiles-bufanda-editorial.jpg"
-              alt="Textiles Moda Austral"
+              src="/images/catalogo/ma-17.jpg"
+              alt="Textiles y Bolsos Moda Austral"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/90 via-[#510f18]/20 to-transparent" />
-            <div className="relative z-10 flex flex-col items-center gap-[14px]">
-              <h3 className="type-heading text-[#f5ecda]">TEXTILES</h3>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/92 via-[#510f18]/25 to-transparent" />
+            <div className="relative z-10 flex flex-col items-center gap-[12px]">
+              <span className="text-[11px] font-medium uppercase tracking-wider text-[#fffbc3]">
+                TEJIDOS CROCHET · MOCHILAS · CARTERAS
+              </span>
+              <h3 className="type-heading text-[#f5ecda]">TEXTILES & BOLSOS</h3>
               <span className="border-b border-[#f5ecda] pb-[4px] text-[12px] font-medium uppercase text-[#f5ecda]">
-                EXPLORAR →
+                EXPLORAR CATEGORÍA →
               </span>
             </div>
           </div>
 
-          {/* Moda Circular Banner */}
+          {/* 4. Accesorios & Belleza */}
           <div
-            onClick={() => onNavigate('moda-circular')}
-            className="group relative flex aspect-[16/10] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#9b4067] p-[36px] text-center sm:p-[52px]"
+            onClick={() => onNavigate('categorias', 'accesorios')}
+            className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#510f18] p-[32px] text-center sm:p-[48px]"
           >
             <img
-              src="/images/moda-circular-empaque.jpg"
-              alt="Moda Circular"
+              src="/images/catalogo/ma-23.jpg"
+              alt="Accesorios y Belleza Moda Austral"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#9b4067]/95 via-[#510f18]/35 to-transparent" />
-            <div className="relative z-10 flex flex-col items-center gap-[14px]">
-              <h3 className="type-heading text-[#f5ecda]">MODA CIRCULAR</h3>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/92 via-[#510f18]/25 to-transparent" />
+            <div className="relative z-10 flex flex-col items-center gap-[12px]">
+              <span className="text-[11px] font-medium uppercase tracking-wider text-[#fffbc3]">
+                PERFUMERÍA · NECESERES · ESPEJOS EN MADERA
+              </span>
+              <h3 className="type-heading text-[#f5ecda]">ACCESORIOS & BELLEZA</h3>
               <span className="border-b border-[#f5ecda] pb-[4px] text-[12px] font-medium uppercase text-[#f5ecda]">
-                VER INFORMACIÓN →
+                EXPLORAR CATEGORÍA →
               </span>
             </div>
+          </div>
+        </div>
+
+        {/* Row 3: Moda Circular Full-Width Editorial Banner (Separated from Product Categories per PDF) */}
+        <div
+          onClick={() => onNavigate('moda-circular')}
+          className="group relative mt-[28px] flex min-h-[320px] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-[#9b4067] p-[36px] text-center sm:mt-[36px] sm:min-h-[400px] sm:p-[56px]"
+        >
+          <img
+            src="/images/catalogo/ma-25.jpg"
+            alt="Moda Circular Moda Austral"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#510f18]/95 via-[#510f18]/45 to-transparent" />
+          <div className="relative z-10 flex max-w-[640px] flex-col items-center gap-[14px]">
+            <span className="inline-block bg-[#9b4067] px-[12px] py-[4px] text-[10px] font-medium uppercase tracking-wider text-[#fffbc3]">
+              IDENTIDAD REUTILIZABLE · SUR DE CHILE
+            </span>
+            <h3 className="type-heading text-[#f5ecda]">MODA CIRCULAR</h3>
+            <p className="text-[14px] leading-[1.5] text-[#f5ecda]/90">
+              Ropa seleccionada con segunda vida y enfoque sustentable. Revisa qué puedes encontrar antes de visitar o escribirnos.
+            </p>
+            <span className="mt-[4px] border-b border-[#f5ecda] pb-[4px] text-[12px] font-medium uppercase text-[#f5ecda]">
+              CONOCER MODA CIRCULAR →
+            </span>
           </div>
         </div>
       </section>
 
-      {/* 3. Featured Boutique Selection — Plenty of space between header, photos, and captions */}
+      {/* 3. Featured Reference Catalog Examples — Generous space between header, photos, and captions */}
       <section className="mx-auto max-w-[1440px] px-[24px] py-[72px] sm:px-[56px] sm:py-[104px]">
         <SectionDivider className="mb-[64px] sm:mb-[80px]" />
 
         <div className="mb-[48px] flex flex-col items-center justify-between gap-[20px] text-center sm:mb-[60px] sm:flex-row sm:items-end sm:text-left">
-          <h2 className="type-heading text-warm-cream">
-            PIEZAS DESTACADAS
-          </h2>
+          <div className="flex flex-col gap-[8px]">
+            <span className="text-[11px] font-medium uppercase text-ember-accent">
+              EJEMPLOS REFERENCIALES · SIN STOCK GARANTIZADO
+            </span>
+            <h2 className="type-heading text-warm-cream">
+              MUESTRA DEL CATÁLOGO
+            </h2>
+          </div>
           <GhostButton onClick={() => onNavigate('categorias', 'all')}>
-            VER CATÁLOGO
+            VER CATÁLOGO COMPLETO
           </GhostButton>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-[24px] gap-y-[52px] sm:gap-x-[32px] sm:gap-y-[68px] lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-[24px] gap-y-[52px] sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[68px] lg:grid-cols-4">
           {featuredGarments.map((garment) => (
             <article
               key={garment.id}
               onClick={() => onSelectGarment(garment)}
               className="group flex cursor-pointer flex-col"
             >
-              {/* Tall 3:4 Product Image */}
+              {/* Tall 3:4 Catalog Image */}
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-bark-brown">
                 <img
                   src={garment.primaryImage}
@@ -199,15 +248,18 @@ export function HeroSection({
 
               {/* Generous space between photo and product text */}
               <div className="mt-[20px] flex flex-col gap-[8px] sm:mt-[24px]">
+                <span className="text-[10px] font-medium uppercase text-ember-accent">
+                  {garment.categoryLabel}
+                </span>
                 <h3 className="text-[13px] font-medium uppercase leading-[1.35] text-warm-cream group-hover:underline sm:text-[14px]">
                   {garment.name}
                 </h3>
-                <div className="flex items-center justify-between pt-[2px]">
-                  <span className="text-[14px] font-medium uppercase text-warm-cream">
-                    {garment.price}
-                  </span>
+                <div className="flex items-center justify-between pt-[4px]">
                   <span className="text-[11px] font-medium uppercase text-driftwood">
-                    TALLA {garment.size}
+                    {garment.availabilityNote}
+                  </span>
+                  <span className="text-[11px] font-medium uppercase text-warm-cream">
+                    VER FICHA →
                   </span>
                 </div>
               </div>

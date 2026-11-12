@@ -1,4 +1,4 @@
-export type CategoryId = 'vestuario' | 'calzado' | 'textiles';
+export type CategoryId = 'vestuario' | 'calzado' | 'textiles' | 'accesorios';
 
 export type CategoryFilter = 'all' | CategoryId;
 
@@ -25,9 +25,9 @@ export interface GarmentItem {
   size: string;
   measurements: string;
   composition: string;
-  condition: 'EXCELENTE' | 'MUY BUENA' | 'BUENA CON DETALLE';
+  condition: 'EXCELENTE' | 'MUY BUENA' | 'SELECCIÓN TIENDA';
   branch: 'Lenca' | 'Puerto Montt';
-  price: string;
+  availabilityNote: string;
   primaryImage: string;
   secondaryImage: string;
   galleryImages: string[];
@@ -63,6 +63,7 @@ export interface BranchInfo {
   statusNote: string;
   conversationalIntro: string;
   imageUrl: string;
+  secondaryImageUrl: string;
   mapQueryUrl: string;
 }
 

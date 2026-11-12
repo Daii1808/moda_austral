@@ -9,6 +9,7 @@ interface FaqSectionProps {
 
 /**
  * Dedicated Preguntas Frecuentes Page — Spacious accordion with generous air
+ * Uses real store signage and interior photographs (`ma-19.jpg`, `ma-29.jpg`).
  */
 export function FaqSection({ onNavigate }: FaqSectionProps) {
   const [expandedId, setExpandedId] = useState<string | null>('stock');
@@ -19,7 +20,7 @@ export function FaqSection({ onNavigate }: FaqSectionProps) {
         <div className="mb-[44px] flex flex-wrap items-end justify-between gap-[16px] sm:mb-[56px]">
           <div className="flex flex-col gap-[10px]">
             <span className="text-[11px] font-medium uppercase text-ember-accent">
-              AYUDA RÁPIDA
+              AYUDA RÁPIDA · GUÍA INFORMATIVA
             </span>
             <h1 className="type-heading text-warm-cream">
               PREGUNTAS FRECUENTES
@@ -37,14 +38,23 @@ export function FaqSection({ onNavigate }: FaqSectionProps) {
         </div>
 
         <div className="grid grid-cols-1 items-start gap-[48px] lg:grid-cols-12 lg:gap-[64px]">
-          {/* Left: Visual Image + Direct CTA with generous separation */}
+          {/* Left: Real Store Photographs + Direct CTA with generous separation */}
           <div className="flex flex-col items-start gap-[28px] lg:col-span-5">
-            <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
-              <img
-                src="/images/empaque-bolsa.jpg"
-                alt="Empaque Moda Austral"
-                className="h-full w-full object-cover"
-              />
+            <div className="grid w-full grid-cols-2 gap-[16px]">
+              <div className="aspect-[3/4] w-full overflow-hidden bg-bark-brown">
+                <img
+                  src="/images/catalogo/ma-19.jpg"
+                  alt="Contacto oficial Moda Austral en tienda"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="aspect-[3/4] w-full overflow-hidden bg-bark-brown">
+                <img
+                  src="/images/catalogo/ma-29.jpg"
+                  alt="Afiche interior Moda Austral"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-[16px]">

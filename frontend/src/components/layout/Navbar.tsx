@@ -13,9 +13,9 @@ interface NavbarProps {
 
 /**
  * Gucci-inspired Scroll-Reactive Sticky Header + Balanced Mobile Layout
- * - Left: Search (icon-only on mobile, "BUSCAR" on desktop) + desktop category links
- * - Center: MODA AUSTRAL wordmark (starts in center of hero -> docks cleanly in header center without overlapping icons)
- * - Right: Hamburger Menu (icon-only on mobile without "MENÚ" text; "MENÚ" label only on sm+)
+ * - Left: Search (icon-only on mobile, "BUSCAR" on desktop) + 4 catalog categories on xl+
+ * - Center: MODA AUSTRAL wordmark (starts in center of hero -> docks cleanly in header center with MA logo)
+ * - Right: Hamburger Menu (icon-only on mobile without "MENÚ" text; "MENÚ" label on sm+)
  */
 export function Navbar({
   currentPage,
@@ -46,18 +46,18 @@ export function Navbar({
           : 'translate-y-0 border-b border-dashed border-cork-border bg-[#f5ecda]/98 py-0 backdrop-blur-md'
       }`}
     >
-      <div className="relative flex h-[64px] sm:h-[68px] w-full items-center justify-between px-[16px] sm:px-[31px] lg:px-[45px]">
-        {/* Left: Search Button (Lupita) + Quick Boutique Links on Desktop */}
+      <div className="relative flex h-[64px] w-full items-center justify-between px-[16px] sm:h-[68px] sm:px-[31px] lg:px-[45px]">
+        {/* Left: Search Button (Lupita) + Quick Catalog Category Links on Desktop */}
         <div
-          className={`z-10 flex items-center gap-[20px] transition-colors duration-500 ${
+          className={`z-10 flex items-center gap-[18px] transition-colors duration-500 ${
             isHeroTop ? 'text-[#f5ecda]' : 'text-[#510f18]'
           }`}
         >
           <button
             type="button"
             onClick={onOpenSearch}
-            aria-label="Buscar prendas"
-            className="flex h-[38px] w-[38px] sm:w-auto cursor-pointer items-center justify-start gap-[8px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75"
+            aria-label="Buscar en el catálogo"
+            className="flex h-[38px] w-[38px] cursor-pointer items-center justify-start gap-[8px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75 sm:w-auto"
           >
             <svg
               width="17"
@@ -75,7 +75,7 @@ export function Navbar({
           </button>
 
           <div
-            className={`hidden items-center gap-[18px] transition-opacity duration-500 xl:flex ${
+            className={`hidden items-center gap-[16px] transition-opacity duration-500 xl:flex ${
               isHeroTop ? 'pointer-events-none opacity-0' : 'opacity-100'
             }`}
           >
@@ -112,17 +112,28 @@ export function Navbar({
             >
               TEXTILES
             </button>
+            <button
+              type="button"
+              onClick={() => onNavigate('categorias', 'accesorios')}
+              className={`cursor-pointer pb-[2px] text-[12px] font-medium uppercase leading-none transition-colors ${
+                currentPage === 'categorias' && activeCategoryFilter === 'accesorios'
+                  ? 'border-b border-dashed border-[#9b4067] text-[#9b4067]'
+                  : 'border-b border-transparent text-[#510f18]/80 hover:border-[#510f18] hover:text-[#510f18]'
+              }`}
+            >
+              ACCESORIOS
+            </button>
           </div>
         </div>
 
-        {/* Center: Scroll-Docking MODA AUSTRAL Wordmark (Centered with ample room on mobile & desktop) */}
+        {/* Center: Scroll-Docking MODA AUSTRAL Wordmark */}
         <button
           type="button"
           onClick={() => onNavigate('inicio')}
-          className={`absolute left-1/2 -translate-x-1/2 flex cursor-pointer items-center gap-[8px] sm:gap-[10px] whitespace-nowrap font-medium uppercase leading-none transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`absolute left-1/2 flex -translate-x-1/2 cursor-pointer items-center gap-[8px] whitespace-nowrap font-medium uppercase leading-none transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-[10px] ${
             isHeroTop
-              ? 'translate-y-[28vh] sm:translate-y-[31vh] text-[16px] sm:text-[20px] scale-[1.85] sm:scale-[3.5] lg:scale-[5.0] text-[#de9fbd]'
-              : 'translate-y-0 scale-100 text-[14px] sm:text-[19px] text-[#510f18]'
+              ? 'translate-y-[28vh] scale-[1.85] text-[16px] text-[#de9fbd] sm:translate-y-[31vh] sm:scale-[3.5] sm:text-[20px] lg:scale-[5.0]'
+              : 'translate-y-0 scale-100 text-[14px] text-[#510f18] sm:text-[19px]'
           }`}
         >
           <span
@@ -135,16 +146,16 @@ export function Navbar({
           <span>MODA AUSTRAL</span>
         </button>
 
-        {/* Right: Consultation link (Desktop only) + Hamburger Icon (Icon-only on mobile, + "MENÚ" on sm+) */}
+        {/* Right: Consultation link (Desktop) + Hamburger Icon (Icon-only on mobile) */}
         <div
-          className={`z-10 flex items-center gap-[16px] sm:gap-[24px] transition-colors duration-500 ${
+          className={`z-10 flex items-center gap-[16px] transition-colors duration-500 sm:gap-[24px] ${
             isHeroTop ? 'text-[#f5ecda]' : 'text-[#510f18]'
           }`}
         >
           <button
             type="button"
             onClick={() => onNavigate('consulta')}
-            className="hidden md:flex cursor-pointer items-center gap-[6px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75"
+            className="hidden cursor-pointer items-center gap-[6px] text-[12px] font-medium uppercase leading-none transition-opacity hover:opacity-75 md:flex"
           >
             <span>TU CONSULTA</span>
             {selectedReference && (
@@ -154,12 +165,11 @@ export function Navbar({
             )}
           </button>
 
-          {/* Hamburger Button — Only the icon on mobile, no "MENÚ" text crowding the header */}
           <button
             type="button"
             onClick={onOpenMenu}
             aria-label="Abrir menú principal"
-            className="group flex h-[38px] w-[38px] sm:w-auto cursor-pointer items-center justify-end gap-[10px] text-[12px] font-medium uppercase leading-none"
+            className="group flex h-[38px] w-[38px] cursor-pointer items-center justify-end gap-[10px] text-[12px] font-medium uppercase leading-none sm:w-auto"
           >
             <span className="flex flex-col items-end gap-[5px]">
               <span

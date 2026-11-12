@@ -5,7 +5,7 @@ import type {
   CategoryId,
   PageRoute,
 } from '@/types/product';
-import { CATEGORIES_DATA } from '@/data/products';
+import { CATEGORIES_DATA, STORE_CONTACT } from '@/data/products';
 import {
   GhostButton,
   SectionDivider,
@@ -27,6 +27,7 @@ const BRANCH_OPTIONS: BranchId[] = ['Lenca', 'Puerto Montt', 'Por definir'];
 
 /**
  * Dedicated Tu Consulta Page — Spacious, uncluttered WhatsApp inquiry builder
+ * Connects directly to the real store WhatsApp (+56 9 4470 4389) per MA_19_111126.png.
  */
 export function ConsultationSection({
   selectedCategory,
@@ -95,7 +96,7 @@ export function ConsultationSection({
     }
   };
 
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(customMessage)}`;
+  const whatsappUrl = `https://wa.me/${STORE_CONTACT.whatsappNumber}?text=${encodeURIComponent(customMessage)}`;
 
   return (
     <div className="min-h-screen w-screen bg-walnut-shadow px-[24px] pt-[124px] pb-[96px] sm:px-[56px] sm:pt-[144px] sm:pb-[120px] animate-fade-in">
@@ -103,7 +104,7 @@ export function ConsultationSection({
         <div className="mb-[40px] flex flex-wrap items-end justify-between gap-[16px] sm:mb-[52px]">
           <div className="flex flex-col gap-[10px]">
             <span className="text-[11px] font-medium uppercase text-ember-accent">
-              WHATSAPP DIRECTO
+              WHATSAPP DIRECTO · {STORE_CONTACT.whatsappDisplay}
             </span>
             <h1 className="type-heading text-warm-cream">TU CONSULTA</h1>
           </div>
@@ -126,7 +127,7 @@ export function ConsultationSection({
             {/* 01. Categoría */}
             <div className="flex flex-col gap-[16px]">
               <span className="text-[11px] font-medium uppercase text-driftwood">
-                01 · CATEGORÍA
+                01 · CATEGORÍA DEL CATÁLOGO
               </span>
               <div className="flex flex-wrap gap-[10px]">
                 {CATEGORIES_DATA.map((cat) => {
@@ -154,7 +155,7 @@ export function ConsultationSection({
             {/* 02. Sucursal */}
             <div className="flex flex-col gap-[16px]">
               <span className="text-[11px] font-medium uppercase text-driftwood">
-                02 · SUCURSAL
+                02 · SUCURSAL DE INTERÉS
               </span>
               <div className="flex flex-wrap gap-[10px]">
                 {BRANCH_OPTIONS.map((branchOption) => {
@@ -199,7 +200,7 @@ export function ConsultationSection({
                 type="text"
                 value={selectedReference}
                 onChange={(e) => onChangeReference(e.target.value)}
-                placeholder="EJ: REF. LEN-0042 — POLERÓN BORDADO..."
+                placeholder="EJ: REF. MA-02 — VESTIDO ESTAMPADO..."
                 className="py-[10px] text-[14px]"
                 inlineAction={
                   selectedReference ? (
@@ -263,7 +264,7 @@ export function ConsultationSection({
               </div>
 
               <span className="text-[11px] font-medium uppercase text-driftwood">
-                LA CONSULTA NO CONFIRMA RESERVA AUTOMÁTICA.
+                LA CONSULTA NO CONFIRMA RESERVA AUTOMÁTICA. LA DISPONIBILIDAD SE CONFIRMA CON LA TIENDA.
               </span>
             </div>
           </div>

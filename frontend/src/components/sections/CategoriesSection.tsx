@@ -17,8 +17,9 @@ interface CategoriesSectionProps {
 }
 
 /**
- * Dedicated Catálogo / Categorías Page (PLP) — Airy Gucci Product Grid
- * Generous vertical spacing between header, filter bar, photos, and captions.
+ * Dedicated Catálogo / Categorías Page
+ * Pure reference catalog organized across Vestuario, Calzado, Textiles & Bolsos, and Accesorios & Belleza.
+ * No prices or direct checkout; clear consultation triggers per category and item.
  */
 export function CategoriesSection({
   activeCategoryFilter,
@@ -55,13 +56,16 @@ export function CategoriesSection({
         {/* 1. Spacious Header */}
         <div className="mb-[36px] flex flex-wrap items-end justify-between gap-[20px] sm:mb-[48px]">
           <div className="flex flex-col gap-[10px]">
+            <span className="text-[11px] font-medium uppercase text-ember-accent">
+              EJEMPLOS REFERENCIALES · SIN STOCK GARANTIZADO
+            </span>
             <h1 className="type-heading text-warm-cream">
-              {activeCategoryMeta ? activeCategoryMeta.title : 'CATÁLOGO'}
+              {activeCategoryMeta ? activeCategoryMeta.title : 'CATÁLOGO REFERENCIAL'}
             </h1>
-            <p className="text-[12px] font-medium uppercase text-driftwood">
+            <p className="max-w-[680px] text-[13px] font-medium uppercase leading-[1.5] text-driftwood">
               {activeCategoryMeta
                 ? activeCategoryMeta.conversationalBody
-                : 'VESTUARIO, CALZADO Y TEXTILES · PIEZAS ÚNICAS'}
+                : 'VESTUARIO, CALZADO, TEXTILES Y ACCESORIOS · DISPONIBILIDAD Y RESERVAS SE CONFIRMAN CON LA TIENDA'}
             </p>
           </div>
 
@@ -78,7 +82,7 @@ export function CategoriesSection({
 
         <SectionDivider />
 
-        {/* 2. Gucci-Style Filter Bar with Breathing Room */}
+        {/* 2. Responsive Category & Branch Filter Bar with Breathing Room */}
         <div className="my-[28px] flex flex-col justify-between gap-[20px] sm:my-[36px] lg:flex-row lg:items-center">
           <div className="flex flex-wrap items-center gap-[10px]">
             <button
@@ -140,8 +144,8 @@ export function CategoriesSection({
 
         <SectionDivider className="mb-[52px] sm:mb-[68px]" />
 
-        {/* 3. Spacious Product Grid — Generous gap between photos and text */}
-        <div className="grid grid-cols-2 gap-x-[24px] gap-y-[56px] sm:gap-x-[32px] sm:gap-y-[72px] md:grid-cols-3 xl:grid-cols-4">
+        {/* 3. Spacious Catalog Grid — Generous gap between photos and text */}
+        <div className="grid grid-cols-1 gap-x-[24px] gap-y-[56px] sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[72px] md:grid-cols-3 xl:grid-cols-4">
           {filteredGarments.map((garment) => (
             <article
               key={garment.id}
@@ -175,6 +179,9 @@ export function CategoriesSection({
                   onClick={() => onSelectGarment(garment)}
                   className="mt-[20px] flex cursor-pointer flex-col gap-[8px] sm:mt-[24px]"
                 >
+                  <span className="text-[10px] font-medium uppercase text-ember-accent">
+                    {garment.categoryLabel} · REF. {garment.refCode}
+                  </span>
                   <h2 className="text-[13px] font-medium uppercase leading-[1.35] text-warm-cream group-hover:underline sm:text-[14px]">
                     {garment.name}
                   </h2>
@@ -185,8 +192,8 @@ export function CategoriesSection({
               </div>
 
               <div className="mt-[16px] flex items-center justify-between border-t border-dashed border-cork-border pt-[12px]">
-                <span className="text-[14px] font-medium uppercase text-warm-cream">
-                  {garment.price}
+                <span className="text-[11px] font-medium uppercase text-driftwood">
+                  {garment.availabilityNote}
                 </span>
                 <button
                   type="button"
@@ -211,7 +218,7 @@ export function CategoriesSection({
 
           <div className="flex flex-col items-center justify-between gap-[24px] text-center sm:flex-row sm:text-left">
             <span className="text-[12px] font-medium uppercase text-driftwood">
-              EJEMPLOS REFERENCIALES · SIN STOCK GARANTIZADO
+              LA DISPONIBILIDAD, RESERVAS Y CONDICIONES DE COMPRA SE CONFIRMAN CON LA TIENDA
             </span>
 
             <div className="flex flex-wrap items-center justify-center gap-[16px]">

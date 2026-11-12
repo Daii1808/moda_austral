@@ -1,5 +1,5 @@
 import type { BranchId, CategoryFilter, PageRoute } from '@/types/product';
-import { BRANCHES_DATA } from '@/data/products';
+import { BRANCHES_DATA, STORE_CONTACT } from '@/data/products';
 import { GhostButton, PillButton, SectionDivider, UnderlineLink } from '@/components/ui';
 
 interface BranchesSectionProps {
@@ -9,6 +9,7 @@ interface BranchesSectionProps {
 
 /**
  * Dedicated Sucursales Page — Spacious boutique locator (Lenca & Puerto Montt)
+ * Uses real store photography from Moda Austral (`ma-03.jpg`, `ma-25.jpg`, `ma-12.jpg`, `ma-19.jpg`).
  */
 export function BranchesSection({
   onSelectBranchForInquiry,
@@ -20,7 +21,7 @@ export function BranchesSection({
         <div className="mb-[40px] flex flex-wrap items-end justify-between gap-[16px] sm:mb-[52px]">
           <div className="flex flex-col gap-[10px]">
             <span className="text-[11px] font-medium uppercase text-ember-accent">
-              TIENDAS FÍSICAS
+              TIENDAS FÍSICAS · {STORE_CONTACT.instagramHandle}
             </span>
             <h1 className="type-heading text-warm-cream">SUCURSALES</h1>
           </div>
@@ -41,12 +42,21 @@ export function BranchesSection({
         <div className="grid grid-cols-1 gap-[56px] lg:grid-cols-2 lg:gap-[48px]">
           {BRANCHES_DATA.map((branch) => (
             <article key={branch.id} className="flex flex-col">
-              <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
-                <img
-                  src={branch.imageUrl}
-                  alt={branch.name}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                />
+              <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-bark-brown">
+                  <img
+                    src={branch.imageUrl}
+                    alt={branch.name}
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+                <div className="aspect-[4/3] w-full overflow-hidden bg-bark-brown">
+                  <img
+                    src={branch.secondaryImageUrl}
+                    alt={`${branch.name} interior`}
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
               </div>
 
               <div className="mt-[28px] flex flex-col gap-[12px] sm:mt-[32px]">
@@ -61,6 +71,9 @@ export function BranchesSection({
                   </span>
                   <span className="text-[12px] font-medium uppercase text-driftwood">
                     {branch.schedule}
+                  </span>
+                  <span className="text-[12px] font-medium uppercase text-ember-accent">
+                    WHATSAPP TIENDA: {STORE_CONTACT.whatsappDisplay}
                   </span>
                 </div>
 
