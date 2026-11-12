@@ -36,7 +36,7 @@ export function SearchOverlay({
     ? GARMENT_CATALOG.filter(
         (item) =>
           item.name.toLowerCase().includes(normalized) ||
-          item.subtitle.toLowerCase().includes(normalized) ||
+          item.conversationalDescription.toLowerCase().includes(normalized) ||
           item.refCode.toLowerCase().includes(normalized) ||
           item.categoryLabel.toLowerCase().includes(normalized) ||
           item.branch.toLowerCase().includes(normalized),

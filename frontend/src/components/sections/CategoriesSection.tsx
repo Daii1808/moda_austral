@@ -18,8 +18,8 @@ interface CategoriesSectionProps {
 
 /**
  * Dedicated Catálogo / Categorías Page
- * Pure reference catalog organized across Vestuario, Calzado, Textiles & Bolsos, and Accesorios & Belleza.
- * No prices or direct checkout; clear consultation triggers per category and item.
+ * Displays 18 catalog items across Vestuario, Calzado, Textiles & Bolsos, and Accesorios & Belleza.
+ * Every item uses its own exclusive photograph (zero duplicate images).
  */
 export function CategoriesSection({
   activeCategoryFilter,
@@ -144,7 +144,7 @@ export function CategoriesSection({
 
         <SectionDivider className="mb-[52px] sm:mb-[68px]" />
 
-        {/* 3. Spacious Catalog Grid — Generous gap between photos and text */}
+        {/* 3. Spacious Catalog Grid — Single exclusive photo per item */}
         <div className="grid grid-cols-1 gap-x-[24px] gap-y-[56px] sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[72px] md:grid-cols-3 xl:grid-cols-4">
           {filteredGarments.map((garment) => (
             <article
@@ -159,12 +159,7 @@ export function CategoriesSection({
                   <img
                     src={garment.primaryImage}
                     alt={garment.name}
-                    className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
-                  />
-                  <img
-                    src={garment.secondaryImage}
-                    alt={`${garment.name} detalle`}
-                    className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
                   <div className="absolute top-[12px] left-[12px] bg-[#510f18]/90 px-[10px] py-[4px]">

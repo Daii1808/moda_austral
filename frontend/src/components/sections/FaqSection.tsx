@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { CategoryFilter, PageRoute } from '@/types/product';
-import { FAQ_ITEMS } from '@/data/products';
+import { EXCLUSIVE_SECTION_IMAGES, FAQ_ITEMS } from '@/data/products';
 import { GhostButton, PillButton, SectionDivider, UnderlineLink } from '@/components/ui';
 
 interface FaqSectionProps {
@@ -9,7 +9,7 @@ interface FaqSectionProps {
 
 /**
  * Dedicated Preguntas Frecuentes Page — Spacious accordion with generous air
- * Uses real store signage and interior photographs (`ma-19.jpg`, `ma-29.jpg`).
+ * Uses exclusive store signage photograph (`ma-19.jpg`).
  */
 export function FaqSection({ onNavigate }: FaqSectionProps) {
   const [expandedId, setExpandedId] = useState<string | null>('stock');
@@ -38,23 +38,14 @@ export function FaqSection({ onNavigate }: FaqSectionProps) {
         </div>
 
         <div className="grid grid-cols-1 items-start gap-[48px] lg:grid-cols-12 lg:gap-[64px]">
-          {/* Left: Real Store Photographs + Direct CTA with generous separation */}
+          {/* Left: Exclusive Store Signage Photograph (ma-19.jpg) + Direct CTA */}
           <div className="flex flex-col items-start gap-[28px] lg:col-span-5">
-            <div className="grid w-full grid-cols-2 gap-[16px]">
-              <div className="aspect-[3/4] w-full overflow-hidden bg-bark-brown">
-                <img
-                  src="/images/catalogo/ma-19.jpg"
-                  alt="Contacto oficial Moda Austral en tienda"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="aspect-[3/4] w-full overflow-hidden bg-bark-brown">
-                <img
-                  src="/images/catalogo/ma-29.jpg"
-                  alt="Afiche interior Moda Austral"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+            <div className="aspect-[3/4] w-full max-w-[420px] overflow-hidden bg-bark-brown">
+              <img
+                src={EXCLUSIVE_SECTION_IMAGES.faqSignage}
+                alt="Contacto oficial Moda Austral en tienda"
+                className="h-full w-full object-cover"
+              />
             </div>
 
             <div className="flex flex-wrap items-center gap-[16px]">

@@ -17,54 +17,44 @@ export type PageRoute =
 export interface GarmentItem {
   id: string;
   refCode: string;
+  name: string;
   category: CategoryId;
   categoryLabel: string;
-  name: string;
-  subtitle: string;
-  conversationalDescription: string;
   size: string;
-  measurements: string;
-  composition: string;
-  condition: 'EXCELENTE' | 'MUY BUENA' | 'SELECCIÓN TIENDA';
+  condition: string;
   branch: 'Lenca' | 'Puerto Montt';
   availabilityNote: string;
+  measurements: string;
+  conversationalDescription: string;
   primaryImage: string;
-  secondaryImage: string;
-  galleryImages: string[];
   featured?: boolean;
 }
 
-export interface CategoryInfo {
+export interface CategoryShowcase {
   id: CategoryId;
-  serialCode: string;
+  numberLabel: string;
   title: string;
-  buttonLabel: string;
-  headline: string;
-  shortDescription: string;
+  subtitle: string;
   conversationalBody: string;
+  examplesList: string[];
+  inspectionTips: string[];
+  buttonLabel: string;
   imageUrl: string;
-  secondaryImageUrl: string;
-  compositionNote: string;
-}
-
-export interface StepItem {
-  number: string;
-  title: string;
-  description: string;
-  highlightNote: string;
+  imageAlt: string;
+  badgeText: string;
 }
 
 export interface BranchInfo {
   id: 'Lenca' | 'Puerto Montt';
   name: string;
-  badge: string;
+  sector: string;
   address: string;
   schedule: string;
+  reference: string;
+  featuredCategories: string;
   statusNote: string;
-  conversationalIntro: string;
-  imageUrl: string;
-  secondaryImageUrl: string;
   mapQueryUrl: string;
+  imageUrl: string;
 }
 
 export interface FaqItem {
@@ -72,4 +62,12 @@ export interface FaqItem {
   question: string;
   shortAnswer: string;
   detailedAnswer: string;
+}
+
+export interface HowToBuyStep {
+  number: string;
+  title: string;
+  shortLabel: string;
+  description: string;
+  highlightNote: string;
 }

@@ -13,7 +13,7 @@ function assert(condition, message) {
   console.log(`✓ PASS: ${message}`);
 }
 
-// 1. Verify all 29 real store photographs (ma-01.jpg .. ma-29.jpg) exist in public/images/catalogo/
+// 1. Verify all 29 real store photographs (ma-01.jpg .. ma-29.jpg) exist and are used EXACTLY ONCE (zero duplicates)
 const productsCode = fs.readFileSync(path.join(rootDir, 'src/data/products.ts'), 'utf8');
 for (let i = 1; i <= 29; i++) {
   const num = String(i).padStart(2, '0');
@@ -22,9 +22,11 @@ for (let i = 1; i <= 29; i++) {
   assert(fs.existsSync(fullPath), `Fotografía real de tienda presente: public/images/catalogo/${fileName}`);
   const stat = fs.statSync(fullPath);
   assert(stat.size > 10000, `Fotografía optimizada válida (>10KB): ${fileName} (${stat.size} bytes)`);
+
+  const matches = productsCode.match(new RegExp(`/images/catalogo/${fileName}`, 'g')) || [];
   assert(
-    productsCode.includes(`/images/catalogo/${fileName}`),
-    `Fotografía ${fileName} integrada en el catálogo/secciones (src/data/products.ts)`,
+    matches.length === 1,
+    `Fotografía ${fileName} asignada de forma 100% única sin repetirse en otra sección/producto (usos: ${matches.length})`,
   );
 }
 
@@ -85,4 +87,4 @@ assert(
   'Monograma oficial MA (ModaAustralLogo.tsx) verificado',
 );
 
-console.log('\nTODAS LAS PRUEBAS DE CATÁLOGO REFERENCIAL (29 FOTOS REALES, 4 CATEGORÍAS, DESIGN.MD Y RESPONSIVIDAD) PASARON EXITOSAMENTE.');
+console.log('\nTODAS LAS PRUEBAS DE CATÁLOGO REFERENCIAL (29 FOTOS REALES 100% ÚNICAS SIN REPETICIÓN, 4 CATEGORÍAS, DESIGN.MD Y RESPONSIVIDAD) PASARON EXITOSAMENTE.');

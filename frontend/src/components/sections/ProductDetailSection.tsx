@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type {
   CategoryFilter,
   CategoryId,
@@ -17,8 +16,8 @@ interface ProductDetailSectionProps {
 
 /**
  * Dedicated Catalog Reference Sheet (Ficha Referencial)
- * Displays the real store photographs, reference specifications, and direct consultation trigger
- * without checkout or pricing.
+ * Displays the item's exclusive real store photograph, reference specifications,
+ * and direct consultation trigger without repeating images across items.
  */
 export function ProductDetailSection({
   garment,
@@ -26,15 +25,14 @@ export function ProductDetailSection({
   onInquireGarment,
   onNavigate,
 }: ProductDetailSectionProps) {
-  const [activeImage, setActiveImage] = useState<string>(garment.primaryImage);
-
-  const displayImage = garment.galleryImages.includes(activeImage)
-    ? activeImage
-    : garment.primaryImage;
-
   const relatedGarments = GARMENT_CATALOG.filter(
-    (item) => item.id !== garment.id,
+    (item) => item.id !== garment.id && item.category === garment.category,
   ).slice(0, 4);
+
+  const fallbackRelated =
+    relatedGarments.length >= 2
+      ? relatedGarments
+      : GARMENT_CATALOG.filter((item) => item.id !== garment.id).slice(0, 4);
 
   return (
     <div className="min-h-screen w-screen bg-walnut-shadow px-[24px] pt-[124px] pb-[96px] sm:px-[56px] sm:pt-[144px] sm:pb-[120px] animate-fade-in">
@@ -72,42 +70,16 @@ export function ProductDetailSection({
 
         {/* Main Split Reference Sheet Layout with Generous Gap */}
         <div className="grid grid-cols-1 items-start gap-[48px] lg:grid-cols-12 lg:gap-[64px]">
-          {/* Left: Real Store Image Gallery */}
+          {/* Left: Exclusive Store Photograph */}
           <div className="flex flex-col gap-[20px] lg:col-span-7">
             <div className="aspect-[4/5] w-full overflow-hidden bg-bark-brown">
               <img
-                key={displayImage}
-                src={displayImage}
+                key={garment.primaryImage}
+                src={garment.primaryImage}
                 alt={garment.name}
                 className="animate-fade-in h-full w-full object-cover"
               />
             </div>
-
-            {garment.galleryImages.length > 1 && (
-              <div className="grid grid-cols-3 gap-[16px] sm:gap-[20px]">
-                {garment.galleryImages.map((imgUrl, idx) => {
-                  const isSelected = displayImage === imgUrl;
-                  return (
-                    <button
-                      key={imgUrl}
-                      type="button"
-                      onClick={() => setActiveImage(imgUrl)}
-                      className={`cursor-pointer overflow-hidden border transition-opacity ${
-                        isSelected
-                          ? 'border-warm-cream opacity-100'
-                          : 'border-transparent opacity-60 hover:opacity-100'
-                      }`}
-                    >
-                      <img
-                        src={imgUrl}
-                        alt={`${garment.name} vista ${idx + 1}`}
-                        className="aspect-[4/5] w-full object-cover"
-                      />
-                    </button>
-                  );
-                })}
-              </div>
-            )}
           </div>
 
           {/* Right: Scannable Reference Sheet Info with Breathing Room */}
@@ -199,16 +171,13 @@ export function ProductDetailSection({
         <div className="mt-[88px] sm:mt-[112px]">
           <SectionDivider className="mb-[48px] sm:mb-[60px]" />
           <h2 className="mb-[36px] text-[15px] font-medium uppercase text-warm-cream sm:mb-[44px]">
-            OTROS EJEMPLOS DEL CATÁLOGO
+            OTROS EJEMPLOS DE {garment.categoryLabel.toUpperCase()}
           </h2>
           <div className="grid grid-cols-1 gap-x-[24px] gap-y-[48px] sm:grid-cols-2 sm:gap-x-[32px] lg:grid-cols-4">
-            {relatedGarments.map((item) => (
+            {fallbackRelated.map((item) => (
               <article
                 key={item.id}
-                onClick={() => {
-                  onSelectGarment(item);
-                  setActiveImage(item.primaryImage);
-                }}
+                onClick={() => onSelectGarment(item)}
                 className="group flex cursor-pointer flex-col"
               >
                 <div className="aspect-[3/4] w-full overflow-hidden bg-bark-brown">
@@ -220,7 +189,7 @@ export function ProductDetailSection({
                 </div>
                 <div className="mt-[18px] flex flex-col gap-[6px] sm:mt-[22px]">
                   <span className="text-[10px] font-medium uppercase text-ember-accent">
-                    {item.categoryLabel}
+                    {item.categoryLabel} · REF. {item.refCode}
                   </span>
                   <span className="text-[13px] font-medium uppercase leading-[1.3] text-warm-cream group-hover:underline">
                     {item.name}

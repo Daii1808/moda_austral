@@ -1,4 +1,5 @@
 import type { CategoryFilter, PageRoute } from '@/types/product';
+import { EXCLUSIVE_SECTION_IMAGES } from '@/data/products';
 import { GhostButton, PillButton, SectionDivider, UnderlineLink } from '@/components/ui';
 
 interface CircularFashionSectionProps {
@@ -7,7 +8,7 @@ interface CircularFashionSectionProps {
 
 /**
  * Dedicated Moda Circular Page — Spacious visual layout with generous margins between photos & text
- * Uses real store interior photography from Moda Austral (`ma-26.jpg`, `ma-18.jpg`, `ma-25.jpg`, `ma-29.jpg`).
+ * Uses exclusive store interior photographs (`ma-18.jpg` and `ma-29.jpg`) not repeated anywhere else.
  */
 export function CircularFashionSection({ onNavigate }: CircularFashionSectionProps) {
   return (
@@ -30,26 +31,16 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
 
         <SectionDivider className="mb-[56px] sm:mb-[72px]" />
 
-        {/* 1. 3-Column Visual Reveal with Generous Gaps */}
-        <div className="grid grid-cols-1 items-center gap-[44px] lg:grid-cols-12 lg:gap-[56px]">
-          <div className="flex flex-col items-start gap-[16px] lg:col-span-4">
+        {/* 1. Editorial Header Lockup */}
+        <div className="grid grid-cols-1 items-end gap-[32px] lg:grid-cols-12 lg:gap-[56px]">
+          <div className="flex flex-col items-start gap-[16px] lg:col-span-6">
             <h1 className="type-heading text-warm-cream">UN NUEVO ENCUENTRO</h1>
             <p className="text-[14px] font-medium uppercase text-ember-accent">
               ROPA CON SEGUNDA VIDA Y REUTILIZACIÓN CONSCIENTE.
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center lg:col-span-4">
-            <div className="aspect-[4/5] w-full overflow-hidden bg-bark-brown">
-              <img
-                src="/images/catalogo/ma-26.jpg"
-                alt="Interior Moda Austral"
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col items-start gap-[28px] lg:col-span-4">
+          <div className="flex flex-col items-start gap-[24px] lg:col-span-6">
             <p className="text-[16px] leading-[1.65] text-warm-cream">
               En Moda Austral trabajamos con prendas únicas y moda circular en Lenca y Puerto Montt, prolongando el uso de vestuario, calzado, textiles y accesorios seleccionados.
             </p>
@@ -64,14 +55,14 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
           </div>
         </div>
 
-        <SectionDivider className="my-[72px] sm:my-[96px]" />
+        <SectionDivider className="my-[64px] sm:my-[88px]" />
 
-        {/* 2. Two Visual Pillars — Generous distance between image and text below */}
+        {/* 2. Two Visual Pillars — Exclusive photos ma-18.jpg & ma-29.jpg */}
         <div className="grid grid-cols-1 gap-[52px] md:grid-cols-2 md:gap-[48px]">
           <div className="flex flex-col">
-            <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
+            <div className="aspect-[4/3] w-full overflow-hidden bg-bark-brown">
               <img
-                src="/images/catalogo/ma-18.jpg"
+                src={EXCLUSIVE_SECTION_IMAGES.circularFind}
                 alt="Qué puedes encontrar en Moda Austral"
                 className="h-full w-full object-cover"
               />
@@ -85,9 +76,9 @@ export function CircularFashionSection({ onNavigate }: CircularFashionSectionPro
           </div>
 
           <div className="flex flex-col">
-            <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
+            <div className="aspect-[4/3] w-full overflow-hidden bg-bark-brown">
               <img
-                src="/images/catalogo/ma-25.jpg"
+                src={EXCLUSIVE_SECTION_IMAGES.circularChoose}
                 alt="Antes de elegir en Moda Austral"
                 className="h-full w-full object-cover"
               />

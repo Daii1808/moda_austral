@@ -9,7 +9,7 @@ interface BranchesSectionProps {
 
 /**
  * Dedicated Sucursales Page — Spacious boutique locator (Lenca & Puerto Montt)
- * Uses real store photography from Moda Austral (`ma-03.jpg`, `ma-25.jpg`, `ma-12.jpg`, `ma-19.jpg`).
+ * Uses exclusive store photographs (`ma-12.jpg` for Lenca, `ma-07.jpg` for Puerto Montt).
  */
 export function BranchesSection({
   onSelectBranchForInquiry,
@@ -38,25 +38,16 @@ export function BranchesSection({
 
         <SectionDivider className="mb-[56px] sm:mb-[72px]" />
 
-        {/* 2-Column Visual Storefront Grid with Generous Space Between Photo and Text */}
+        {/* 2-Column Visual Storefront Grid with Exclusive Photo Per Branch */}
         <div className="grid grid-cols-1 gap-[56px] lg:grid-cols-2 lg:gap-[48px]">
           {BRANCHES_DATA.map((branch) => (
             <article key={branch.id} className="flex flex-col">
-              <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2">
-                <div className="aspect-[4/3] w-full overflow-hidden bg-bark-brown">
-                  <img
-                    src={branch.imageUrl}
-                    alt={branch.name}
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-                <div className="aspect-[4/3] w-full overflow-hidden bg-bark-brown">
-                  <img
-                    src={branch.secondaryImageUrl}
-                    alt={`${branch.name} interior`}
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
+              <div className="aspect-[16/10] w-full overflow-hidden bg-bark-brown">
+                <img
+                  src={branch.imageUrl}
+                  alt={branch.name}
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
               </div>
 
               <div className="mt-[28px] flex flex-col gap-[12px] sm:mt-[32px]">
