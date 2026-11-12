@@ -33,7 +33,7 @@ const PRIMARY_MENU_ITEMS: PrimaryNavItem[] = [
     label: 'CATEGORÍAS',
     page: 'categorias',
     category: 'all',
-    previewImage: '/images/catalogo/ma-26.jpg',
+    previewImage: '/images/catalogo/ma-07.jpg',
     previewCaption: 'VESTUARIO, CALZADO, TEXTILES Y ACCESORIOS',
     subItems: [
       { label: 'VER TODO EL CATÁLOGO', category: 'all' },

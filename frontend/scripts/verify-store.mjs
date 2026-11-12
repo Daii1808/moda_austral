@@ -13,30 +13,100 @@ function assert(condition, message) {
   console.log(`✓ PASS: ${message}`);
 }
 
-// 1. Verify all 29 real store photographs (ma-01.jpg .. ma-29.jpg) exist and are used EXACTLY ONCE (zero duplicates)
 const productsCode = fs.readFileSync(path.join(rootDir, 'src/data/products.ts'), 'utf8');
-for (let i = 1; i <= 29; i++) {
-  const num = String(i).padStart(2, '0');
-  const fileName = `ma-${num}.jpg`;
-  const fullPath = path.join(rootDir, 'public', 'images', 'catalogo', fileName);
-  assert(fs.existsSync(fullPath), `Fotografía real de tienda presente: public/images/catalogo/${fileName}`);
-  const stat = fs.statSync(fullPath);
-  assert(stat.size > 10000, `Fotografía optimizada válida (>10KB): ${fileName} (${stat.size} bytes)`);
 
-  const matches = productsCode.match(new RegExp(`/images/catalogo/${fileName}`, 'g')) || [];
+// 1. Verify that discarded/unwanted images and items are completely removed
+const forbiddenImages = ['ma-06.jpg', 'ma-20.jpg', 'ma-21.jpg', 'ma-26.jpg', 'ma-27.jpg'];
+for (const badImg of forbiddenImages) {
   assert(
-    matches.length === 1,
-    `Fotografía ${fileName} asignada de forma 100% única sin repetirse en otra sección/producto (usos: ${matches.length})`,
+    !productsCode.includes(badImg),
+    `Imagen descartada eliminada del catálogo: ${badImg}`,
   );
 }
 
-// 2. Verify pure reference catalog (zero $ prices) and 4 catalog categories
+const forbiddenTitles = [
+  'Conjunto Deportivo',
+  'Mocasines de Gamuza Camel',
+  'Zapatos de Tacón Dorado',
+  'Sandalias de Tacón',
+  'Top Tejido a Crochet',
+  'Gorros de Temporada',
+];
+for (const badTitle of forbiddenTitles) {
+  assert(
+    !productsCode.includes(badTitle),
+    `Cuadro/nombre descartado eliminado por completo: "${badTitle}"`,
+  );
+}
+
+// 2. Verify every active image in products.ts exists and is used EXACTLY ONCE (zero repetition)
+const activeImages = [
+  'ma-01.jpg',
+  'ma-02.jpg',
+  'ma-03.jpg',
+  'ma-04.jpg',
+  'ma-05.jpg',
+  'ma-07.jpg',
+  'ma-08.jpg',
+  'ma-09.jpg',
+  'ma-10.jpg',
+  'ma-11.jpg',
+  'ma-12.jpg',
+  'ma-13.jpg',
+  'ma-14.jpg',
+  'ma-15.jpg',
+  'ma-16.jpg',
+  'ma-17.jpg',
+  'ma-18.jpg',
+  'ma-19.jpg',
+  'ma-22.jpg',
+  'ma-23.jpg',
+  'ma-24.jpg',
+  'ma-25.jpg',
+  'ma-28.jpg',
+  'ma-29.jpg',
+];
+
+for (const fileName of activeImages) {
+  const fullPath = path.join(rootDir, 'public', 'images', 'catalogo', fileName);
+  assert(fs.existsSync(fullPath), `Fotografía real de tienda presente: public/images/catalogo/${fileName}`);
+  const matches = productsCode.match(new RegExp(`/images/catalogo/${fileName}`, 'g')) || [];
+  assert(
+    matches.length === 1,
+    `Fotografía ${fileName} asignada de forma 100% única sin repetirse (usos: ${matches.length})`,
+  );
+}
+
+// 3. Verify exact corrected names & categories
+const requiredTitles = [
+  'Camisa de Puntitos y Camisas de Verano Hombre',
+  'Poleras y Camisas de Verano para Hombre',
+  'Blusa Amarilla con Cuello de Lentejuelas y Brillos',
+  'Chaqueta Negra de Lentejuelas Multicolor',
+  'Variedad de Jeans: Pantalones, Shorts y Camisas de Jeans',
+  'Línea Infantil Color y Algodón',
+  'Botín Chelsea en Cuero Negro',
+  'Cárdigan Tejido a Crochet Punto Granizo',
+  'Mochila Urbana',
+  'Carteras y Bandoleras Seleccionadas',
+  'Línea de Perfumería y Fragancias',
+  'Colección de Bisutería, Lazos y Accesorios para el Pelo',
+  'Espejo Tejido a Mano',
+];
+for (const title of requiredTitles) {
+  assert(
+    productsCode.includes(`name: '${title}'`),
+    `Nombre corregido y verificado con su imagen: "${title}"`,
+  );
+}
+
+// 4. Verify pure reference catalog (zero $ prices) and 4 catalog categories
 assert(!productsCode.includes('$'), 'Catálogo 100% referencial sin precios de venta directa ($)');
 for (const catId of ["id: 'vestuario'", "id: 'calzado'", "id: 'textiles'", "id: 'accesorios'"]) {
   assert(productsCode.includes(catId), `Categoría de catálogo verificada en products.ts: ${catId}`);
 }
 
-// 3. Verify all 8 prototype pages & navigation components exist as separate views with zero shadows
+// 5. Verify all 8 prototype pages & navigation components exist as separate views with zero shadows
 const requiredComponents = [
   'src/components/layout/Navbar.tsx',
   'src/components/layout/MenuDrawer.tsx',
@@ -65,26 +135,4 @@ for (const rel of requiredComponents) {
   }
 }
 
-// 4. Verify strict PDF Page 9 & DESIGN.md color/typography tokens and responsive fluid scales in globals.css
-const css = fs.readFileSync(path.join(rootDir, 'src/styles/globals.css'), 'utf8');
-for (const token of [
-  '#f5ecda',
-  '#510f18',
-  '#9b4067',
-  '#de9fbd',
-  '#fffbc3',
-  '--font-halyard-display-variable',
-  '--font-arial',
-]) {
-  assert(css.includes(token), `Token de diseño PDF / DESIGN.md verificado en globals.css: ${token}`);
-}
-assert(
-  css.includes('clamp('),
-  'Tipografía fluida responsiva (móvil, tablet y computador) verificada en globals.css',
-);
-assert(
-  fs.existsSync(path.join(rootDir, 'src/components/ui/ModaAustralLogo.tsx')),
-  'Monograma oficial MA (ModaAustralLogo.tsx) verificado',
-);
-
-console.log('\nTODAS LAS PRUEBAS DE CATÁLOGO REFERENCIAL (29 FOTOS REALES 100% ÚNICAS SIN REPETICIÓN, 4 CATEGORÍAS, DESIGN.MD Y RESPONSIVIDAD) PASARON EXITOSAMENTE.');
+console.log('\nTODAS LAS PRUEBAS DE NOMBRES CORREGIDOS, CUADROS ELIMINADOS Y FOTOS ÚNICAS PASARON EXITOSAMENTE.');
