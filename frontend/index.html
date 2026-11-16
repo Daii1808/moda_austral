@@ -1,17 +1,95 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MODA AUSTRAL — Moda Circular & Indumentaria Reutilizada</title>
+    <title>Moda Austral — Catálogo Digital de Moda Circular en Lenca y Puerto Montt</title>
+
+    <!-- Favicon Oficial (Isotipo MA - Manual de Identidad Visual) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#590516" />
+
+    <!-- SEO & Metadescripciones para Motores de Búsqueda -->
+    <meta
+      name="description"
+      content="Moda Austral ofrece vestuario, calzado, textiles a crochet y accesorios reutilizados a precios accesibles en Lenca y Puerto Montt. Explora el catálogo digital y consulta disponibilidad por WhatsApp."
+    />
+    <meta
+      name="keywords"
+      content="Moda Austral, moda circular, ropa reutilizada, tienda Lenca, tienda Puerto Montt, vestuario, calzado, tejidos crochet, accesorios, catálogo digital"
+    />
+    <meta name="author" content="Moda Austral" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Open Graph / Redes Sociales y WhatsApp Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Moda Austral" />
+    <meta
+      property="og:title"
+      content="Moda Austral — Vestuario, Calzado y Textiles en Lenca y Puerto Montt"
+    />
+    <meta
+      property="og:description"
+      content="Explora nuestro catálogo referencial de vestuario, calzado, tejidos a crochet y accesorios en Lenca y Puerto Montt. Atención cercana y consulta directa por WhatsApp."
+    />
+    <meta property="og:image" content="/images/catalogo/ma-03.jpg" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Moda Austral — Catálogo Digital · Lenca y Puerto Montt"
+    />
+    <meta
+      name="twitter:description"
+      content="Vestuario, calzado, textiles y accesorios reutilizados a precios accesibles en Lenca y Puerto Montt. Consulta disponibilidad con la tienda."
+    />
+    <meta name="twitter:image" content="/images/catalogo/ma-03.jpg" />
+
+    <!-- Tipografía Oficial Manual de Identidad Visual: Arcifom (Arciform) + Fallbacks Redondeados -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+    <link href="https://fonts.cdnfonts.com/css/arciform" rel="stylesheet" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Quicksand:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Datos Estructurados Schema.org para Rastreadores (SEO Local Lenca y Puerto Montt) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ClothingStore",
+        "name": "Moda Austral",
+        "description": "Moda Austral ofrece vestuario, calzado, textiles y accesorios reutilizados a precios accesibles con atención cercana en Lenca y Puerto Montt.",
+        "telephone": "+56944704389",
+        "url": "https://github.com/Daii1808/moda_austral",
+        "image": "/images/catalogo/ma-03.jpg",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "Ruta 7 (Carretera Austral) Km 33, Sector Lenca",
+            "addressLocality": "Puerto Montt",
+            "addressRegion": "Los Lagos",
+            "addressCountry": "CL"
+          },
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "Sector Centro / Barrio Puerto",
+            "addressLocality": "Puerto Montt",
+            "addressRegion": "Los Lagos",
+            "addressCountry": "CL"
+          }
+        ],
+        "sameAs": ["https://www.instagram.com/modaaus"]
+      }
+    </script>
   </head>
-  <body class="bg-[#f5ecda] text-[#510f18] antialiased selection:bg-[#510f18] selection:text-[#f5ecda]">
+  <body class="bg-[#F6EBD7] text-[#590516] antialiased selection:bg-[#590516] selection:text-[#F6EBD7]">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

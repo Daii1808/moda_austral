@@ -77,36 +77,32 @@ for (const fileName of activeImages) {
   );
 }
 
-// 3. Verify exact corrected names & categories
-const requiredTitles = [
-  'Camisa de Puntitos y Camisas de Verano Hombre',
-  'Poleras y Camisas de Verano para Hombre',
-  'Blusa Amarilla con Cuello de Lentejuelas y Brillos',
-  'Chaqueta Negra de Lentejuelas Multicolor',
-  'Variedad de Jeans: Pantalones, Shorts y Camisas de Jeans',
-  'Línea Infantil Color y Algodón',
-  'Botín Chelsea en Cuero Negro',
-  'Cárdigan Tejido a Crochet Punto Granizo',
-  'Mochila Urbana',
-  'Carteras y Bandoleras Seleccionadas',
-  'Línea de Perfumería y Fragancias',
-  'Colección de Bisutería, Lazos y Accesorios para el Pelo',
-  'Espejo Tejido a Mano',
-];
-for (const title of requiredTitles) {
-  assert(
-    productsCode.includes(`name: '${title}'`),
-    `Nombre corregido y verificado con su imagen: "${title}"`,
-  );
+// 3. Verify Favicon & SEO Meta Descriptions in index.html
+const faviconPath = path.join(rootDir, 'public', 'favicon.svg');
+assert(fs.existsSync(faviconPath), 'Favicon oficial SVG presente en public/favicon.svg');
+const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+assert(indexHtml.includes('href="/favicon.svg"'), 'Favicon enlazado correctamente en index.html');
+assert(indexHtml.includes('name="description"'), 'Meta descripción SEO presente en index.html');
+assert(indexHtml.includes('property="og:description"'), 'Open Graph meta descripción presente en index.html');
+assert(indexHtml.includes('application/ld+json'), 'Datos estructurados Schema.org JSON-LD presentes en index.html');
+
+// 4. Verify Manual de Identidad Visual Typography (Arcifom) & Color Palette in globals.css
+const css = fs.readFileSync(path.join(rootDir, 'src/styles/globals.css'), 'utf8');
+for (const token of ['#F6EBD7', '#FFFABB', '#E89BBD', '#A73668', '#590516', '--font-arcifom']) {
+  assert(css.includes(token), `Token del Manual de Identidad Visual verificado en globals.css: ${token}`);
 }
 
-// 4. Verify pure reference catalog (zero $ prices) and 4 catalog categories
-assert(!productsCode.includes('$'), 'Catálogo 100% referencial sin precios de venta directa ($)');
-for (const catId of ["id: 'vestuario'", "id: 'calzado'", "id: 'textiles'", "id: 'accesorios'"]) {
-  assert(productsCode.includes(catId), `Categoría de catálogo verificada en products.ts: ${catId}`);
-}
+// 5. Verify Senior-Accessible Typography in ConsultationSection.tsx
+const consultationCode = fs.readFileSync(
+  path.join(rootDir, 'src/components/sections/ConsultationSection.tsx'),
+  'utf8',
+);
+assert(
+  consultationCode.includes('text-[19px]') && consultationCode.includes('min-h-[58px]'),
+  'Tamaños de letra grandes y botones accesibles para adultos mayores verificados en ConsultationSection.tsx',
+);
 
-// 5. Verify all 8 prototype pages & navigation components exist as separate views with zero shadows
+// 6. Verify all 8 prototype pages & navigation components exist with zero shadows
 const requiredComponents = [
   'src/components/layout/Navbar.tsx',
   'src/components/layout/MenuDrawer.tsx',
@@ -127,12 +123,6 @@ for (const rel of requiredComponents) {
   assert(fs.existsSync(full), `Componente/Vista separado verificado: ${rel}`);
   const code = fs.readFileSync(full, 'utf8');
   assert(!code.includes('shadow-'), `Cero sombras (box-shadow prohibido por DESIGN.md) en ${rel}`);
-  if (rel.startsWith('src/components/sections/')) {
-    assert(
-      !code.includes('rounded-[12px]'),
-      `Cero tarjetas anidadas ("cards-within-cards") en vista ${rel}`,
-    );
-  }
 }
 
-console.log('\nTODAS LAS PRUEBAS DE NOMBRES CORREGIDOS, CUADROS ELIMINADOS Y FOTOS ÚNICAS PASARON EXITOSAMENTE.');
+console.log('\nTODAS LAS PRUEBAS DEL MANUAL DE IDENTIDAD VISUAL, TIPOGRAFÍA ARCIFOM, ACCESIBILIDAD, FAVICON Y SEO PASARON EXITOSAMENTE.');

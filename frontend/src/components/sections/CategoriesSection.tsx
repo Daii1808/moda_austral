@@ -17,9 +17,7 @@ interface CategoriesSectionProps {
 }
 
 /**
- * Dedicated Catálogo / Categorías Page
- * Displays 18 catalog items across Vestuario, Calzado, Textiles & Bolsos, and Accesorios & Belleza.
- * Every item uses its own exclusive photograph (zero duplicate images).
+ * Catálogo Referencial por Categorías — Con botones y tipografía oficial Arcifom del Manual de Identidad Visual
  */
 export function CategoriesSection({
   activeCategoryFilter,
@@ -48,24 +46,24 @@ export function CategoriesSection({
 
   const primaryCtaLabel = activeCategoryMeta
     ? activeCategoryMeta.buttonLabel
-    : 'CONSULTAR DISPONIBILIDAD';
+    : 'Consultar Disponibilidad';
 
   return (
-    <div className="min-h-screen w-screen bg-walnut-shadow px-[24px] pt-[124px] pb-[96px] sm:px-[56px] sm:pt-[144px] sm:pb-[120px] animate-fade-in">
+    <div className="min-h-screen w-screen bg-[#F6EBD7] px-[24px] pt-[124px] pb-[96px] sm:px-[56px] sm:pt-[144px] sm:pb-[120px] animate-fade-in">
       <div className="mx-auto max-w-[1440px]">
-        {/* 1. Spacious Header */}
+        {/* 1. Encabezado */}
         <div className="mb-[36px] flex flex-wrap items-end justify-between gap-[20px] sm:mb-[48px]">
           <div className="flex flex-col gap-[10px]">
-            <span className="text-[11px] font-medium uppercase text-ember-accent">
-              EJEMPLOS REFERENCIALES · SIN STOCK GARANTIZADO
+            <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+              Ejemplos Referenciales · Sin Stock Garantizado
             </span>
-            <h1 className="type-heading text-warm-cream">
-              {activeCategoryMeta ? activeCategoryMeta.title : 'CATÁLOGO REFERENCIAL'}
+            <h1 className="type-heading text-[#590516]">
+              {activeCategoryMeta ? activeCategoryMeta.title : 'Catálogo Referencial'}
             </h1>
-            <p className="max-w-[680px] text-[13px] font-medium uppercase leading-[1.5] text-driftwood">
+            <p className="max-w-[700px] text-[16px] leading-[1.55] text-[#802348]">
               {activeCategoryMeta
                 ? activeCategoryMeta.conversationalBody
-                : 'VESTUARIO, CALZADO, TEXTILES Y ACCESORIOS · DISPONIBILIDAD Y RESERVAS SE CONFIRMAN CON LA TIENDA'}
+                : 'Vestuario, calzado, textiles y accesorios. La disponibilidad y las reservas se confirman directamente con la tienda.'}
             </p>
           </div>
 
@@ -76,25 +74,25 @@ export function CategoriesSection({
               onNavigate('inicio');
             }}
           >
-            ← INICIO
+            ← Inicio
           </UnderlineLink>
         </div>
 
         <SectionDivider />
 
-        {/* 2. Responsive Category & Branch Filter Bar with Breathing Room */}
+        {/* 2. Barra de Filtros con Botones Estilo Manual de Identidad Visual */}
         <div className="my-[28px] flex flex-col justify-between gap-[20px] sm:my-[36px] lg:flex-row lg:items-center">
-          <div className="flex flex-wrap items-center gap-[10px]">
+          <div className="flex flex-wrap items-center gap-[12px]">
             <button
               type="button"
               onClick={() => onChangeCategoryFilter('all')}
-              className={`cursor-pointer rounded-[22.5px] border px-[18px] py-[8px] text-[12px] font-medium uppercase leading-none transition-colors ${
+              className={`font-arcifom cursor-pointer rounded-[14px] border-2 px-[20px] py-[11px] text-[15px] font-medium leading-none transition-colors ${
                 activeCategoryFilter === 'all'
-                  ? 'border-[#510f18] bg-[#510f18] text-[#f5ecda]'
-                  : 'border-[#510f18] bg-transparent text-[#510f18] hover:bg-[#de9fbd]/25'
+                  ? 'border-[#590516] bg-[#590516] text-[#FFFABB]'
+                  : 'border-[#A73668]/50 bg-[#FFFABB]/50 text-[#590516] hover:bg-[#E89BBD]/45'
               }`}
             >
-              TODO ({GARMENT_CATALOG.length})
+              Todo ({GARMENT_CATALOG.length})
             </button>
 
             {CATEGORIES_DATA.map((cat) => {
@@ -105,10 +103,10 @@ export function CategoriesSection({
                   key={cat.id}
                   type="button"
                   onClick={() => onChangeCategoryFilter(cat.id)}
-                  className={`cursor-pointer rounded-[22.5px] border px-[18px] py-[8px] text-[12px] font-medium uppercase leading-none transition-colors ${
+                  className={`font-arcifom cursor-pointer rounded-[14px] border-2 px-[20px] py-[11px] text-[15px] font-medium leading-none transition-colors ${
                     isSelected
-                      ? 'border-[#510f18] bg-[#510f18] text-[#f5ecda]'
-                      : 'border-[#510f18] bg-transparent text-[#510f18] hover:bg-[#de9fbd]/25'
+                      ? 'border-[#590516] bg-[#590516] text-[#FFFABB]'
+                      : 'border-[#A73668]/50 bg-[#FFFABB]/50 text-[#590516] hover:bg-[#E89BBD]/45'
                   }`}
                 >
                   {cat.title} ({count})
@@ -117,22 +115,22 @@ export function CategoriesSection({
             })}
           </div>
 
-          <div className="flex flex-wrap items-center gap-[14px]">
-            <span className="text-[10px] font-medium uppercase text-driftwood">
-              SUCURSAL:
+          <div className="flex flex-wrap items-center gap-[12px]">
+            <span className="font-arcifom text-[14px] font-medium text-[#802348]">
+              Sucursal:
             </span>
             {(['all', 'Lenca', 'Puerto Montt'] as const).map((branch) => {
               const active = branchFilter === branch;
-              const label = branch === 'all' ? 'TODAS' : branch.toUpperCase();
+              const label = branch === 'all' ? 'Todas' : branch;
               return (
                 <button
                   key={branch}
                   type="button"
                   onClick={() => setBranchFilter(branch)}
-                  className={`cursor-pointer pb-[2px] text-[12px] font-medium uppercase transition-colors ${
+                  className={`font-arcifom cursor-pointer rounded-[12px] px-[16px] py-[9px] text-[14px] font-medium transition-colors ${
                     active
-                      ? 'border-b border-dashed border-ember-accent text-warm-cream'
-                      : 'border-b border-transparent text-warm-cream/70 hover:text-warm-cream'
+                      ? 'bg-[#A73668] text-[#FFFABB]'
+                      : 'bg-[#E89BBD]/30 text-[#590516] hover:bg-[#E89BBD]/60'
                   }`}
                 >
                   {label}
@@ -144,7 +142,7 @@ export function CategoriesSection({
 
         <SectionDivider className="mb-[52px] sm:mb-[68px]" />
 
-        {/* 3. Spacious Catalog Grid — Single exclusive photo per item */}
+        {/* 3. Grilla de Productos del Catálogo */}
         <div className="grid grid-cols-1 gap-x-[24px] gap-y-[56px] sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[72px] md:grid-cols-3 xl:grid-cols-4">
           {filteredGarments.map((garment) => (
             <article
@@ -154,7 +152,7 @@ export function CategoriesSection({
               <div>
                 <div
                   onClick={() => onSelectGarment(garment)}
-                  className="relative aspect-[3/4] w-full cursor-pointer overflow-hidden bg-bark-brown"
+                  className="relative aspect-[3/4] w-full cursor-pointer overflow-hidden rounded-[14px] bg-[#590516]"
                 >
                   <img
                     src={garment.primaryImage}
@@ -162,32 +160,31 @@ export function CategoriesSection({
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
-                  <div className="absolute top-[12px] left-[12px] bg-[#510f18]/90 px-[10px] py-[4px]">
-                    <span className="text-[10px] font-medium uppercase text-[#f5ecda]">
-                      {garment.branch.toUpperCase()}
+                  <div className="absolute top-[12px] left-[12px] rounded-[8px] bg-[#590516]/90 px-[12px] py-[5px]">
+                    <span className="font-arcifom text-[12px] font-medium text-[#FFFABB]">
+                      {garment.branch}
                     </span>
                   </div>
                 </div>
 
-                {/* Airy Caption Below Image */}
                 <div
                   onClick={() => onSelectGarment(garment)}
                   className="mt-[20px] flex cursor-pointer flex-col gap-[8px] sm:mt-[24px]"
                 >
-                  <span className="text-[10px] font-medium uppercase text-ember-accent">
-                    {garment.categoryLabel} · REF. {garment.refCode}
+                  <span className="font-arcifom text-[13px] font-medium text-[#A73668]">
+                    {garment.categoryLabel} · Ref. {garment.refCode}
                   </span>
-                  <h2 className="text-[13px] font-medium uppercase leading-[1.35] text-warm-cream group-hover:underline sm:text-[14px]">
+                  <h2 className="font-arcifom text-[16px] font-medium leading-[1.35] text-[#590516] group-hover:underline sm:text-[17px]">
                     {garment.name}
                   </h2>
-                  <span className="text-[11px] font-medium uppercase text-driftwood">
-                    TALLA {garment.size} · {garment.condition}
+                  <span className="text-[14px] text-[#802348]">
+                    Talla: {garment.size} · {garment.condition}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-[16px] flex items-center justify-between border-t border-dashed border-cork-border pt-[12px]">
-                <span className="text-[11px] font-medium uppercase text-driftwood">
+              <div className="mt-[18px] flex items-center justify-between border-t border-dashed border-[#E89BBD] pt-[14px]">
+                <span className="text-[13px] font-medium text-[#802348]">
                   {garment.availabilityNote}
                 </span>
                 <button
@@ -198,22 +195,22 @@ export function CategoriesSection({
                       `${garment.refCode} — ${garment.name}`,
                     )
                   }
-                  className="cursor-pointer text-[11px] font-medium uppercase text-ember-accent hover:underline"
+                  className="font-arcifom cursor-pointer rounded-[10px] bg-[#A73668] px-[14px] py-[8px] text-[14px] font-medium text-[#FFFABB] transition-colors hover:bg-[#590516]"
                 >
-                  CONSULTAR →
+                  Consultar →
                 </button>
               </div>
             </article>
           ))}
         </div>
 
-        {/* 4. Spacious Bottom CTA */}
+        {/* 4. Pie de Catálogo */}
         <div className="mt-[80px] sm:mt-[104px]">
           <SectionDivider className="mb-[40px] sm:mb-[48px]" />
 
           <div className="flex flex-col items-center justify-between gap-[24px] text-center sm:flex-row sm:text-left">
-            <span className="text-[12px] font-medium uppercase text-driftwood">
-              LA DISPONIBILIDAD, RESERVAS Y CONDICIONES DE COMPRA SE CONFIRMAN CON LA TIENDA
+            <span className="text-[15px] font-medium text-[#802348]">
+              La disponibilidad, reservas y condiciones de compra se confirman directamente con la tienda.
             </span>
 
             <div className="flex flex-wrap items-center justify-center gap-[16px]">
@@ -223,7 +220,7 @@ export function CategoriesSection({
                 {primaryCtaLabel}
               </PillButton>
               <GhostButton onClick={() => onNavigate('como-comprar')}>
-                CÓMO COMPRAR
+                Cómo Comprar
               </GhostButton>
             </div>
           </div>

@@ -5,14 +5,14 @@ interface PillButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * Pill Button (Filled) — Burdeo Austral (#510f18) background with Marfil (#f5ecda) text,
- * matching the Canva prototype buttons ("Cómo comprar", "Sucursales") on Page 15 of the PDF
- * and the 36px pill geometry of docs/DESIGN.md.
+ * Botón Primario Moda Austral — Estilo Gráfico del Manual de Identidad Visual (Páginas 6, 11 y 12)
+ * Bloque suavemente redondeado (14px), tipografía oficial Arcifom, fondo Burdeo (#590516)
+ * con transición a Fucsia (#A73668) y texto Mantequilla/Beige de alto contraste.
  */
 export function PillButton({ children, className = '', ...props }: PillButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center rounded-[36px] bg-[#510f18] px-[24px] py-[14px] text-[12px] font-medium uppercase leading-none text-[#f5ecda] transition-colors hover:bg-[#9b4067] cursor-pointer ${className}`}
+      className={`font-arcifom inline-flex items-center justify-center rounded-[14px] bg-[#590516] px-[26px] py-[15px] text-[15px] font-medium leading-none tracking-[0.02em] text-[#FFFABB] transition-colors duration-200 hover:bg-[#A73668] hover:text-[#F6EBD7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A73668] cursor-pointer ${className}`}
       {...props}
     >
       {children}

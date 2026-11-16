@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <rect width="128" height="128" rx="26" fill="#F6EBD7"/>
+  <defs>
+    <linearGradient id="maGradLeft" x1="16" y1="20" x2="78" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A73668"/>
+      <stop offset="100%" stop-color="#590516"/>
+    </linearGradient>
+    <linearGradient id="maGradRight" x1="48" y1="20" x2="112" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A73668"/>
+      <stop offset="55%" stop-color="#590516"/>
+      <stop offset="100%" stop-color="#3E020E"/>
+    </linearGradient>
+  </defs>
+  <!-- Left Ribbon Leg of M/A -->
+  <path
+    d="M18 104V28C18 22.5 22.5 18 28 18H33C36.8 18 40.2 20.1 41.9 23.5L64 66L53 85L36 52V104C36 107.3 33.3 110 30 110H24C20.7 110 18 107.3 18 104Z"
+    fill="url(#maGradLeft)"
+  />
+  <!-- Center-Right Interlaced Apex (Isotipo MA Manual de Identidad Visual p. 8-9) -->
+  <path
+    d="M44 76L63.2 24.5C64.8 20.4 68.7 18 73 18H76.5C80.8 18 84.7 20.4 86.3 24.5L108 82V26C108 21.6 111.6 18 116 18C116 18 110 18 110 18"
+    stroke="none"
+  />
+  <path
+    d="M52 54L65 23C66.6 19.4 70.1 18 74 18H76C79.9 18 83.4 19.4 85 23L110 84V28C110 22.5 105.5 18 100 18H96C92.5 18 89.3 20 87.8 23.2L82 36L90 55L92 50V102C92 106.4 95.6 110 100 110H104C107.3 110 110 107.3 110 104V28"
+    fill="url(#maGradRight)"
+  />
+  <!-- Clean Geometric Ribbon M + A matching Page 8 & 9 of Manual de Identidad Visual -->
+  <path
+    d="M20 102V28C20 22.477 24.477 18 30 18H33.5C37.1 18 40.4 20 42.1 23.2L64 65L74 45L83 64L70.2 88.5C68.5 91.8 65.1 93.8 61.4 93.8C57.7 93.8 54.3 91.8 52.6 88.5L38 60V102C38 106.418 34.418 110 30 110H28C23.582 110 20 106.418 20 102Z"
+    fill="url(#maGradLeft)"
+  />
+  <path
+    d="M55 48L66.8 23.2C68.5 19.9 71.8 18 75.5 18H78.5C82.2 18 85.5 19.9 87.2 23.2L108 66V26C108 21.582 104.418 18 100 18H98C94.5 18 91.3 20 89.8 23.2L84 35L92 52V102C92 106.418 95.582 110 100 110H102C106.418 110 110 106.418 110 102V26"
+    fill="url(#maGradRight)"
+  />
+  <path
+    d="M36 90L45 72L53 87L44.8 104.2C43.2 107.7 39.7 110 35.8 110H29L36 90Z"
+    fill="#A73668"
+    fill-opacity="0.88"
+  />
+</svg>
