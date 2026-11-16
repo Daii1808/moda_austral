@@ -12,11 +12,10 @@ interface HeroSectionProps {
 }
 
 /**
- * Página de Inicio — Basada estrictamente en el Manual de Identidad Visual de Moda Austral:
- * - Portada (Pág. 1 y 19): Fondo ma-03.jpg con "moda austral" en tipografía Arcifom y color Rosa pastel (#E89BBD).
- * - Propuesta de valor y Personalidad de marca (Pág. 4 y 6): Etiquetas gráficas en Mantequilla (#FFFABB),
- *   Fucsia (#A73668), Burdeo (#590516) y Beige (#F6EBD7).
- * - Botones de interacción redondeados (rounded-[14px]) con tipografía oficial Arcifom y acceso directo a Consultas.
+ * Página de Inicio — Portada idéntica a la Página 1 del Manual de Identidad Visual:
+ * - Fotografía de tienda con leve viñeta en negro (sin degradado burdeo encima).
+ * - SVG Oficial "Nombre moda austral.svg" 100% centrado horizontal y verticalmente, fijo sin temblor.
+ * - Botones de interacción con el estilo gráfico de bloques redondeados de Moda Austral.
  */
 export function HeroSection({
   onNavigate,
@@ -26,32 +25,33 @@ export function HeroSection({
 
   return (
     <div className="w-screen bg-[#F6EBD7]">
-      {/* 1. Portada Oficial Manual de Identidad Visual (Pág. 1) */}
-      <section className="relative flex min-h-screen w-screen flex-col justify-between overflow-hidden bg-[#590516] px-[24px] pt-[96px] pb-[64px] sm:px-[56px] sm:pb-[80px]">
+      {/* 1. Portada Oficial Manual de Identidad Visual (Pág. 1): Leve viñeta en negro + SVG "moda austral" centrado */}
+      <section className="relative flex min-h-screen w-screen flex-col items-center justify-center overflow-hidden bg-black px-[24px] pt-[84px] pb-[56px] sm:px-[56px]">
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <img
             src={EXCLUSIVE_SECTION_IMAGES.heroBanner}
             alt="Interior de tienda Moda Austral en Lenca y Puerto Montt"
-            className="animate-hero-zoom h-full w-full object-cover opacity-65 contrast-105"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#590516]/65 via-[#590516]/35 to-[#590516]/90" />
+          {/* Leve viñeta en negro igual a la portada del Manual de Identidad Visual */}
+          <div className="absolute inset-0 bg-black/45" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.58)_100%)]" />
         </div>
 
-        {/* Espacio superior para el título "moda austral" en Arcifom que baja desde el Navbar */}
-        <div className="relative z-10 pt-[84px]" aria-hidden="true" />
+        {/* Contenedor Central: SVG Oficial "Nombre moda austral.svg" perfectamente centrado y estable */}
+        <div className="relative z-10 mx-auto flex w-full max-w-[1080px] flex-col items-center justify-center text-center">
+          <img
+            src="/nombre-moda-austral.svg"
+            alt="moda austral"
+            className="mx-auto w-[92%] max-w-[940px] select-none object-contain"
+          />
 
-        {/* Bloque Inferior de Portada — Tipografía Arcifom y Botones del Manual de Identidad Visual */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[820px] flex-col items-center gap-[18px] text-center animate-fade-up">
-          <span className="font-arcifom inline-block rounded-[10px] bg-[#A73668] px-[16px] py-[7px] text-[14px] font-medium tracking-[0.03em] text-[#FFFABB]">
-            Catálogo Digital · Lenca y Puerto Montt
-          </span>
-
-          <p className="font-arcifom max-w-[640px] text-[18px] sm:text-[22px] font-normal leading-[1.4] text-[#F6EBD7]">
-            Vestuario, calzado, textiles y accesorios reutilizados a precios accesibles con atención cercana.
+          <p className="mt-[20px] max-w-[620px] text-[16px] sm:text-[19px] font-normal leading-[1.45] text-[#F6EBD7]/95">
+            Catálogo Digital · Vestuario, calzado, textiles y accesorios reutilizados en Lenca y Puerto Montt
           </p>
 
-          {/* Botones de Interacción con el Estilo Gráfico del Manual (Pág. 6 y 11) */}
-          <div className="mt-[10px] flex flex-wrap items-center justify-center gap-[16px]">
+          {/* Botones de Interacción con el Estilo Gráfico del Manual */}
+          <div className="mt-[32px] flex flex-wrap items-center justify-center gap-[16px]">
             <button
               type="button"
               onClick={() => onNavigate('categorias', 'all')}
@@ -71,7 +71,7 @@ export function HeroSection({
             <button
               type="button"
               onClick={() => onNavigate('como-comprar')}
-              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] border-2 border-[#F6EBD7] bg-[#590516]/50 px-[24px] py-[14px] text-[15px] font-medium leading-none text-[#F6EBD7] transition-colors duration-200 hover:bg-[#A73668] hover:border-[#A73668]"
+              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] border-2 border-[#F6EBD7]/85 bg-black/35 px-[24px] py-[14px] text-[15px] font-medium leading-none text-[#F6EBD7] transition-colors duration-200 hover:bg-[#A73668] hover:border-[#A73668]"
             >
               Cómo Comprar
             </button>
@@ -131,20 +131,19 @@ export function HeroSection({
           </UnderlineLink>
         </div>
 
-        {/* Grilla 2x2 de las 4 Categorías con botones estilo Manual de Identidad */}
         <div className="grid grid-cols-1 gap-[28px] sm:gap-[36px] md:grid-cols-2">
           {CATEGORIES_DATA.map((cat) => (
             <div
               key={cat.id}
               onClick={() => onNavigate('categorias', cat.id)}
-              className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden rounded-[18px] bg-[#590516] p-[32px] text-center sm:p-[48px]"
+              className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden rounded-[18px] bg-black p-[32px] text-center sm:p-[48px]"
             >
               <img
                 src={cat.imageUrl}
                 alt={cat.imageAlt}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#590516]/92 via-[#590516]/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
               <div className="relative z-10 flex flex-col items-center gap-[14px]">
                 <span className="font-arcifom rounded-[10px] bg-[#A73668] px-[14px] py-[5px] text-[13px] font-medium text-[#FFFABB]">
                   {cat.badgeText}
@@ -161,14 +160,14 @@ export function HeroSection({
         {/* Banner Editorial: Moda Circular */}
         <div
           onClick={() => onNavigate('moda-circular')}
-          className="group relative mt-[28px] flex min-h-[320px] w-full cursor-pointer flex-col items-center justify-end overflow-hidden rounded-[18px] bg-[#A73668] p-[36px] text-center sm:mt-[36px] sm:min-h-[400px] sm:p-[56px]"
+          className="group relative mt-[28px] flex min-h-[320px] w-full cursor-pointer flex-col items-center justify-end overflow-hidden rounded-[18px] bg-black p-[36px] text-center sm:mt-[36px] sm:min-h-[400px] sm:p-[56px]"
         >
           <img
             src={EXCLUSIVE_SECTION_IMAGES.circularBanner}
             alt="Moda Circular Moda Austral"
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#590516]/95 via-[#590516]/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
           <div className="relative z-10 flex max-w-[640px] flex-col items-center gap-[14px]">
             <span className="font-arcifom inline-block rounded-[10px] bg-[#A73668] px-[14px] py-[5px] text-[13px] font-medium text-[#FFFABB]">
               Identidad Reutilizable · Sur de Chile

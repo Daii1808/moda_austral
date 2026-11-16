@@ -1,42 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
-  <rect width="128" height="128" rx="26" fill="#F6EBD7"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 60 880 820" fill="none">
+  <rect x="100" y="60" width="880" height="820" rx="160" fill="#F6EBD7" />
   <defs>
-    <linearGradient id="maGradLeft" x1="16" y1="20" x2="78" y2="108" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#A73668"/>
-      <stop offset="100%" stop-color="#590516"/>
+    <linearGradient id="favSh0" x1="156.5" y1="816" x2="658.6" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9A486C" />
+      <stop offset="52%" stop-color="#6F233F" />
+      <stop offset="100%" stop-color="#4A0A14" />
     </linearGradient>
-    <linearGradient id="maGradRight" x1="48" y1="20" x2="112" y2="108" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#A73668"/>
-      <stop offset="55%" stop-color="#590516"/>
-      <stop offset="100%" stop-color="#3E020E"/>
+    <linearGradient id="favSh1" x1="399.5" y1="116" x2="923.4" y2="816" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9A486C" />
+      <stop offset="52%" stop-color="#6B1E38" />
+      <stop offset="100%" stop-color="#4A0A14" />
     </linearGradient>
   </defs>
-  <!-- Left Ribbon Leg of M/A -->
   <path
-    d="M18 104V28C18 22.5 22.5 18 28 18H33C36.8 18 40.2 20.1 41.9 23.5L64 66L53 85L36 52V104C36 107.3 33.3 110 30 110H24C20.7 110 18 107.3 18 104Z"
-    fill="url(#maGradLeft)"
-  />
-  <!-- Center-Right Interlaced Apex (Isotipo MA Manual de Identidad Visual p. 8-9) -->
-  <path
-    d="M44 76L63.2 24.5C64.8 20.4 68.7 18 73 18H76.5C80.8 18 84.7 20.4 86.3 24.5L108 82V26C108 21.6 111.6 18 116 18C116 18 110 18 110 18"
-    stroke="none"
+    d="M186.50 116.12 C169.93 116.12 156.50 129.55 156.50 146.12 L156.50 786.12 C156.50 802.69 169.93 816.12 186.50 816.12 L280.50 816.12 C288.34 816.12 295.38 811.32 298.25 804.03 L388.25 575.56 L314.86 454.75 L280.50 549.43 L280.50 358.50 L329.86 439.75 L403.25 560.56 L501.74 722.69 C507.18 731.65 516.90 737.12 527.38 737.12 L551.85 737.12 C562.74 737.12 572.78 731.21 578.07 721.69 L658.62 576.68 L607.46 457.14 L541.27 579.98 L456.04 437.64 L384.54 318.24 L272.24 130.71 C266.82 121.66 257.04 116.12 246.50 116.12 Z"
+    fill="url(#favSh0)"
   />
   <path
-    d="M52 54L65 23C66.6 19.4 70.1 18 74 18H76C79.9 18 83.4 19.4 85 23L110 84V28C110 22.5 105.5 18 100 18H96C92.5 18 89.3 20 87.8 23.2L82 36L90 55L92 50V102C92 106.4 95.6 110 100 110H104C107.3 110 110 107.3 110 104V28"
-    fill="url(#maGradRight)"
-  />
-  <!-- Clean Geometric Ribbon M + A matching Page 8 & 9 of Manual de Identidad Visual -->
-  <path
-    d="M20 102V28C20 22.477 24.477 18 30 18H33.5C37.1 18 40.4 20 42.1 23.2L64 65L74 45L83 64L70.2 88.5C68.5 91.8 65.1 93.8 61.4 93.8C57.7 93.8 54.3 91.8 52.6 88.5L38 60V102C38 106.418 34.418 110 30 110H28C23.582 110 20 106.418 20 102Z"
-    fill="url(#maGradLeft)"
-  />
-  <path
-    d="M55 48L66.8 23.2C68.5 19.9 71.8 18 75.5 18H78.5C82.2 18 85.5 19.9 87.2 23.2L108 66V26C108 21.582 104.418 18 100 18H98C94.5 18 91.3 20 89.8 23.2L84 35L92 52V102C92 106.418 95.582 110 100 110H102C106.418 110 110 106.418 110 102V26"
-    fill="url(#maGradRight)"
-  />
-  <path
-    d="M36 90L45 72L53 87L44.8 104.2C43.2 107.7 39.7 110 35.8 110H29L36 90Z"
-    fill="#A73668"
-    fill-opacity="0.88"
+    d="M832.14 116.12 C821.25 116.12 811.22 122.02 805.92 131.54 L710.04 303.92 L763.03 421.30 L798.50 351.25 L798.50 548.10 L748.03 436.30 L695.04 318.92 L611.46 133.77 C606.61 123.03 595.91 116.12 584.12 116.12 L495.69 116.12 C483.48 116.12 472.49 123.52 467.89 134.84 L399.54 303.24 L471.04 422.64 L538.44 245.77 L622.46 442.14 L673.62 561.68 L774.70 797.92 C779.43 808.96 790.28 816.12 802.28 816.12 L893.41 816.12 C910.02 816.12 923.46 802.64 923.41 786.04 L921.59 146.03 C921.54 129.50 908.12 116.12 891.59 116.12 Z"
+    fill="url(#favSh1)"
   />
 </svg>
