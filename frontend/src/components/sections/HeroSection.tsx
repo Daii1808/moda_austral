@@ -12,10 +12,8 @@ interface HeroSectionProps {
 }
 
 /**
- * Página de Inicio — Portada idéntica a la Página 1 del Manual de Identidad Visual:
- * - Fotografía de tienda con leve viñeta en negro (sin degradado burdeo encima).
- * - SVG Oficial "Nombre moda austral.svg" 100% centrado horizontal y verticalmente, fijo sin temblor.
- * - Botones de interacción con el estilo gráfico de bloques redondeados de Moda Austral.
+ * Página de Inicio — Portada con viñeta en negro atenuada, título vectorial "moda austral"
+ * que sube al header al hacer scroll, cuerpos en Acumin Variable Concept Light y cero tarjetas anidadas.
  */
 export function HeroSection({
   onNavigate,
@@ -25,37 +23,33 @@ export function HeroSection({
 
   return (
     <div className="w-screen bg-[#F6EBD7]">
-      {/* 1. Portada Oficial Manual de Identidad Visual (Pág. 1): Leve viñeta en negro + SVG "moda austral" centrado */}
-      <section className="relative flex min-h-screen w-screen flex-col items-center justify-center overflow-hidden bg-black px-[24px] pt-[84px] pb-[56px] sm:px-[56px]">
+      {/* 1. Portada Oficial Manual de Identidad Visual: Viñeta negra suave y atenuada */}
+      <section className="relative flex min-h-screen w-screen flex-col justify-between overflow-hidden bg-black px-[24px] pt-[96px] pb-[64px] sm:px-[56px] sm:pb-[80px]">
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <img
             src={EXCLUSIVE_SECTION_IMAGES.heroBanner}
             alt="Interior de tienda Moda Austral en Lenca y Puerto Montt"
             className="h-full w-full object-cover"
           />
-          {/* Leve viñeta en negro igual a la portada del Manual de Identidad Visual */}
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.58)_100%)]" />
+          {/* Viñeta en negro muy suave y atenuada para que la foto respire como en el Manual */}
+          <div className="absolute inset-0 bg-black/18" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_0%,rgba(0,0,0,0.34)_100%)]" />
         </div>
 
-        {/* Contenedor Central: SVG Oficial "Nombre moda austral.svg" perfectamente centrado y estable */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1080px] flex-col items-center justify-center text-center">
-          <img
-            src="/nombre-moda-austral.svg"
-            alt="moda austral"
-            className="mx-auto w-[92%] max-w-[940px] select-none object-contain"
-          />
+        {/* Espacio superior para el SVG "moda austral" centrado que sube al header al hacer scroll */}
+        <div className="relative z-10 pt-[84px]" aria-hidden="true" />
 
-          <p className="mt-[20px] max-w-[620px] text-[16px] sm:text-[19px] font-normal leading-[1.45] text-[#F6EBD7]/95">
+        {/* Bloque Inferior de Portada */}
+        <div className="relative z-10 mx-auto flex w-full max-w-[760px] flex-col items-center gap-[16px] text-center">
+          <p className="font-acumin max-w-[600px] text-[17px] sm:text-[20px] font-light leading-[1.45] text-[#F6EBD7]">
             Catálogo Digital · Vestuario, calzado, textiles y accesorios reutilizados en Lenca y Puerto Montt
           </p>
 
-          {/* Botones de Interacción con el Estilo Gráfico del Manual */}
-          <div className="mt-[32px] flex flex-wrap items-center justify-center gap-[16px]">
+          <div className="mt-[12px] flex flex-wrap items-center justify-center gap-[16px]">
             <button
               type="button"
               onClick={() => onNavigate('categorias', 'all')}
-              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-[#E89BBD] px-[28px] py-[16px] text-[16px] font-medium leading-none text-[#590516] transition-colors duration-200 hover:bg-[#FFFABB]"
+              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-[#E89BBD] px-[28px] py-[15px] text-[15px] font-medium leading-none text-[#590516] transition-colors duration-200 hover:bg-[#FFFABB]"
             >
               Ver Catálogo
             </button>
@@ -63,7 +57,7 @@ export function HeroSection({
             <button
               type="button"
               onClick={() => onNavigate('consulta')}
-              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-[#FFFABB] px-[28px] py-[16px] text-[16px] font-medium leading-none text-[#590516] transition-colors duration-200 hover:bg-[#E89BBD]"
+              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-[#FFFABB] px-[28px] py-[15px] text-[15px] font-medium leading-none text-[#590516] transition-colors duration-200 hover:bg-[#E89BBD]"
             >
               Consultar Disponibilidad
             </button>
@@ -71,7 +65,7 @@ export function HeroSection({
             <button
               type="button"
               onClick={() => onNavigate('como-comprar')}
-              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] border-2 border-[#F6EBD7]/85 bg-black/35 px-[24px] py-[14px] text-[15px] font-medium leading-none text-[#F6EBD7] transition-colors duration-200 hover:bg-[#A73668] hover:border-[#A73668]"
+              className="font-arcifom inline-flex cursor-pointer items-center justify-center rounded-[14px] border border-[#F6EBD7] bg-black/25 px-[24px] py-[14px] text-[15px] font-medium leading-none text-[#F6EBD7] transition-colors duration-200 hover:bg-[#A73668] hover:border-[#A73668]"
             >
               Cómo Comprar
             </button>
@@ -79,43 +73,11 @@ export function HeroSection({
         </div>
       </section>
 
-      {/* 2. Propuesta de Valor y Personalidad de Marca (Páginas 4 y 6 del Manual de Identidad Visual) */}
-      <section className="w-full bg-[#E89BBD]/30 px-[24px] py-[56px] sm:px-[56px] sm:py-[72px]">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-[36px] lg:grid-cols-12">
-          <div className="flex flex-col gap-[14px] lg:col-span-7">
-            <div className="border-l-2 border-[#A73668] pl-[16px]">
-              <h2 className="font-arcifom text-[28px] sm:text-[36px] font-medium leading-[1.1] text-[#A73668]">
-                Propuesta <span className="font-normal text-[#590516]/80">de valor</span>
-              </h2>
-            </div>
-            <p className="text-[17px] sm:text-[18px] leading-[1.6] text-[#590516]">
-              <strong>Moda Austral</strong> ofrece la oportunidad de encontrar vestuario, calzado y textiles reutilizados a precios accesibles, combinando variedad de piezas únicas con una atención cercana en <strong>Lenca y Puerto Montt</strong>.
-            </p>
-          </div>
-
-          {/* Etiquetas Gráficas Oficiales de Personalidad de Marca (Página 6 del Manual) */}
-          <div className="flex flex-wrap items-center justify-center gap-[12px] lg:col-span-5 lg:justify-end">
-            <span className="font-arcifom -rotate-2 rounded-[12px] bg-[#FFFABB] px-[22px] py-[12px] text-[16px] font-medium text-[#A73668]">
-              Cercana
-            </span>
-            <span className="font-arcifom rotate-1 rounded-[12px] bg-[#A73668] px-[22px] py-[12px] text-[16px] font-medium text-[#F6EBD7]">
-              Transparente
-            </span>
-            <span className="font-arcifom -rotate-1 rounded-[12px] bg-[#590516] px-[22px] py-[12px] text-[16px] font-medium text-[#F6EBD7]">
-              Práctica
-            </span>
-            <span className="font-arcifom rotate-2 rounded-[12px] border border-[#A73668]/30 bg-[#F6EBD7] px-[22px] py-[12px] text-[16px] font-medium text-[#A73668]">
-              Confiable
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Las 4 Categorías del Catálogo + Banner Moda Circular */}
-      <section className="mx-auto max-w-[1440px] px-[24px] py-[80px] sm:px-[56px] sm:py-[104px]">
-        <div className="mb-[48px] flex flex-col items-center justify-between gap-[16px] text-center sm:mb-[60px] sm:flex-row sm:items-end sm:text-left">
+      {/* 2. Las 4 Categorías del Catálogo + Banner Moda Circular (Sin tarjetas anidadas) */}
+      <section className="mx-auto max-w-[1440px] px-[24px] py-[80px] sm:px-[56px] sm:py-[112px]">
+        <div className="mb-[48px] flex flex-col items-center justify-between gap-[16px] text-center sm:mb-[64px] sm:flex-row sm:items-end sm:text-left">
           <div className="flex flex-col gap-[8px]">
-            <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+            <span className="font-arcifom text-[13px] font-medium uppercase tracking-wider text-[#A73668]">
               Guía de Categorías
             </span>
             <h2 className="type-heading text-[#590516]">Catálogo por Categoría</h2>
@@ -136,20 +98,20 @@ export function HeroSection({
             <div
               key={cat.id}
               onClick={() => onNavigate('categorias', cat.id)}
-              className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden rounded-[18px] bg-black p-[32px] text-center sm:p-[48px]"
+              className="group relative flex aspect-[4/5] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-black p-[32px] text-center sm:p-[48px]"
             >
               <img
                 src={cat.imageUrl}
                 alt={cat.imageAlt}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-              <div className="relative z-10 flex flex-col items-center gap-[14px]">
-                <span className="font-arcifom rounded-[10px] bg-[#A73668] px-[14px] py-[5px] text-[13px] font-medium text-[#FFFABB]">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+              <div className="relative z-10 flex flex-col items-center gap-[12px]">
+                <span className="font-acumin text-[13px] font-light tracking-wider text-[#FFFABB]">
                   {cat.badgeText}
                 </span>
                 <h3 className="type-heading text-[#F6EBD7]">{cat.title}</h3>
-                <span className="font-arcifom inline-flex items-center justify-center rounded-[12px] bg-[#FFFABB] px-[20px] py-[10px] text-[14px] font-medium text-[#590516] transition-colors group-hover:bg-[#E89BBD]">
+                <span className="font-arcifom border-b border-[#F6EBD7] pb-[4px] text-[14px] font-medium text-[#F6EBD7]">
                   Explorar categoría →
                 </span>
               </div>
@@ -160,36 +122,36 @@ export function HeroSection({
         {/* Banner Editorial: Moda Circular */}
         <div
           onClick={() => onNavigate('moda-circular')}
-          className="group relative mt-[28px] flex min-h-[320px] w-full cursor-pointer flex-col items-center justify-end overflow-hidden rounded-[18px] bg-black p-[36px] text-center sm:mt-[36px] sm:min-h-[400px] sm:p-[56px]"
+          className="group relative mt-[28px] flex min-h-[320px] w-full cursor-pointer flex-col items-center justify-end overflow-hidden bg-black p-[36px] text-center sm:mt-[36px] sm:min-h-[400px] sm:p-[56px]"
         >
           <img
             src={EXCLUSIVE_SECTION_IMAGES.circularBanner}
             alt="Moda Circular Moda Austral"
             className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
           <div className="relative z-10 flex max-w-[640px] flex-col items-center gap-[14px]">
-            <span className="font-arcifom inline-block rounded-[10px] bg-[#A73668] px-[14px] py-[5px] text-[13px] font-medium text-[#FFFABB]">
+            <span className="font-acumin text-[13px] font-light tracking-wider text-[#FFFABB]">
               Identidad Reutilizable · Sur de Chile
             </span>
             <h3 className="type-heading text-[#F6EBD7]">Moda Circular</h3>
-            <p className="text-[16px] leading-[1.55] text-[#F6EBD7]/95">
+            <p className="font-acumin text-[16px] font-light leading-[1.55] text-[#F6EBD7]/95">
               Ropa seleccionada con segunda vida y enfoque sustentable. Revisa qué puedes encontrar antes de visitar o escribirnos.
             </p>
-            <span className="font-arcifom mt-[6px] inline-flex items-center justify-center rounded-[12px] bg-[#E89BBD] px-[22px] py-[12px] text-[15px] font-medium text-[#590516] transition-colors group-hover:bg-[#FFFABB]">
+            <span className="font-arcifom mt-[4px] border-b border-[#F6EBD7] pb-[4px] text-[14px] font-medium text-[#F6EBD7]">
               Conocer Moda Circular →
             </span>
           </div>
         </div>
       </section>
 
-      {/* 4. Muestra del Catálogo Referencial */}
+      {/* 3. Muestra del Catálogo Referencial (Sin tarjetas anidadas) */}
       <section className="mx-auto max-w-[1440px] px-[24px] py-[72px] sm:px-[56px] sm:py-[96px]">
         <SectionDivider className="mb-[56px] sm:mb-[72px]" />
 
         <div className="mb-[48px] flex flex-col items-center justify-between gap-[20px] text-center sm:mb-[60px] sm:flex-row sm:items-end sm:text-left">
           <div className="flex flex-col gap-[8px]">
-            <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+            <span className="font-arcifom text-[13px] font-medium uppercase tracking-wider text-[#A73668]">
               Ejemplos Referenciales · Sin Stock Garantizado
             </span>
             <h2 className="type-heading text-[#590516]">
@@ -208,31 +170,31 @@ export function HeroSection({
               onClick={() => onSelectGarment(garment)}
               className="group flex cursor-pointer flex-col"
             >
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[14px] bg-[#590516]">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#590516]">
                 <img
                   src={garment.primaryImage}
                   alt={garment.name}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-[12px] left-[12px] rounded-[8px] bg-[#590516]/90 px-[12px] py-[5px]">
-                  <span className="font-arcifom text-[12px] font-medium text-[#FFFABB]">
+                <div className="absolute top-[12px] left-[12px] bg-[#590516]/90 px-[10px] py-[4px]">
+                  <span className="font-acumin text-[11px] font-light uppercase text-[#FFFABB]">
                     {garment.branch}
                   </span>
                 </div>
               </div>
 
               <div className="mt-[20px] flex flex-col gap-[8px] sm:mt-[24px]">
-                <span className="font-arcifom text-[13px] font-medium text-[#A73668]">
+                <span className="font-acumin text-[12px] font-light uppercase text-[#A73668]">
                   {garment.categoryLabel}
                 </span>
                 <h3 className="font-arcifom text-[16px] font-medium leading-[1.35] text-[#590516] group-hover:underline sm:text-[17px]">
                   {garment.name}
                 </h3>
                 <div className="flex items-center justify-between pt-[4px]">
-                  <span className="text-[13px] font-medium text-[#802348]">
+                  <span className="font-acumin text-[13px] font-light text-[#802348]">
                     {garment.availabilityNote}
                   </span>
-                  <span className="font-arcifom rounded-[8px] bg-[#E89BBD]/40 px-[10px] py-[4px] text-[13px] font-medium text-[#590516] group-hover:bg-[#A73668] group-hover:text-[#FFFABB]">
+                  <span className="font-arcifom text-[13px] font-medium text-[#590516] group-hover:text-[#A73668]">
                     Ver ficha →
                   </span>
                 </div>
@@ -242,20 +204,20 @@ export function HeroSection({
         </div>
       </section>
 
-      {/* 5. Barra de Accesos Rápidos (Consultas, Cómo Comprar y Sucursales) */}
+      {/* 4. Barra de Accesos Rápidos (Consultas, Cómo Comprar y Sucursales) */}
       <section className="mx-auto max-w-[1440px] px-[24px] py-[72px] sm:px-[56px] sm:py-[96px]">
         <SectionDivider className="mb-[56px] sm:mb-[72px]" />
 
         <div className="grid grid-cols-1 gap-[36px] md:grid-cols-3 md:gap-[32px]">
           <div className="flex flex-col items-center justify-between gap-[18px] border-b border-dashed border-[#E89BBD] pb-[28px] text-center md:items-start md:border-b-0 md:pb-0 md:text-left">
             <div className="flex flex-col gap-[6px]">
-              <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+              <span className="font-arcifom text-[13px] font-medium uppercase text-[#A73668]">
                 Atención Cercana
               </span>
               <h3 className="type-heading-sm text-[#590516]">
                 Consultar Disponibilidad
               </h3>
-              <p className="text-[15px] text-[#802348]">
+              <p className="font-acumin text-[16px] font-light text-[#802348]">
                 Pregunta por tallas o prendas directamente en nuestro WhatsApp.
               </p>
             </div>
@@ -266,35 +228,35 @@ export function HeroSection({
 
           <div className="flex flex-col items-center justify-between gap-[18px] border-b border-dashed border-[#E89BBD] pb-[28px] text-center md:items-start md:border-b-0 md:pb-0 md:text-left">
             <div className="flex flex-col gap-[6px]">
-              <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+              <span className="font-arcifom text-[13px] font-medium uppercase text-[#A73668]">
                 Paso a Paso
               </span>
               <h3 className="type-heading-sm text-[#590516]">
                 Cómo Comprar
               </h3>
-              <p className="text-[15px] text-[#802348]">
+              <p className="font-acumin text-[16px] font-light text-[#802348]">
                 Revisa cómo elegir tu referencia y coordinar tu visita.
               </p>
             </div>
             <GhostButton onClick={() => onNavigate('como-comprar')}>
-              Ver Guía de Compra
+              Cómo Comprar
             </GhostButton>
           </div>
 
           <div className="flex flex-col items-center justify-between gap-[18px] text-center md:items-start md:text-left">
             <div className="flex flex-col gap-[6px]">
-              <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+              <span className="font-arcifom text-[13px] font-medium uppercase text-[#A73668]">
                 Lenca y Puerto Montt
               </span>
               <h3 className="type-heading-sm text-[#590516]">
-                Nuestras Sucursales
+                Sucursales
               </h3>
-              <p className="text-[15px] text-[#802348]">
+              <p className="font-acumin text-[16px] font-light text-[#802348]">
                 Conoce nuestras ubicaciones, horarios y mapa de llegada.
               </p>
             </div>
             <GhostButton onClick={() => onNavigate('sucursales')}>
-              Ver Sucursales
+              Sucursales
             </GhostButton>
           </div>
         </div>

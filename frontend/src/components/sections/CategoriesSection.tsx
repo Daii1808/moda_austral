@@ -17,7 +17,8 @@ interface CategoriesSectionProps {
 }
 
 /**
- * Catálogo Referencial por Categorías — Con botones y tipografía oficial Arcifom del Manual de Identidad Visual
+ * Catálogo Referencial por Categorías — Títulos y botones en Arcifom, cuerpos en Acumin Light,
+ * y cero tarjetas anidadas ("cards-within-cards").
  */
 export function CategoriesSection({
   activeCategoryFilter,
@@ -54,13 +55,13 @@ export function CategoriesSection({
         {/* 1. Encabezado */}
         <div className="mb-[36px] flex flex-wrap items-end justify-between gap-[20px] sm:mb-[48px]">
           <div className="flex flex-col gap-[10px]">
-            <span className="font-arcifom text-[14px] font-medium text-[#A73668]">
+            <span className="font-arcifom text-[13px] font-medium uppercase tracking-wider text-[#A73668]">
               Ejemplos Referenciales · Sin Stock Garantizado
             </span>
             <h1 className="type-heading text-[#590516]">
               {activeCategoryMeta ? activeCategoryMeta.title : 'Catálogo Referencial'}
             </h1>
-            <p className="max-w-[700px] text-[16px] leading-[1.55] text-[#802348]">
+            <p className="font-acumin max-w-[700px] text-[17px] font-light leading-[1.55] text-[#802348]">
               {activeCategoryMeta
                 ? activeCategoryMeta.conversationalBody
                 : 'Vestuario, calzado, textiles y accesorios. La disponibilidad y las reservas se confirman directamente con la tienda.'}
@@ -89,7 +90,7 @@ export function CategoriesSection({
               className={`font-arcifom cursor-pointer rounded-[14px] border-2 px-[20px] py-[11px] text-[15px] font-medium leading-none transition-colors ${
                 activeCategoryFilter === 'all'
                   ? 'border-[#590516] bg-[#590516] text-[#FFFABB]'
-                  : 'border-[#A73668]/50 bg-[#FFFABB]/50 text-[#590516] hover:bg-[#E89BBD]/45'
+                  : 'border-[#A73668]/50 bg-transparent text-[#590516] hover:bg-[#E89BBD]/35'
               }`}
             >
               Todo ({GARMENT_CATALOG.length})
@@ -106,7 +107,7 @@ export function CategoriesSection({
                   className={`font-arcifom cursor-pointer rounded-[14px] border-2 px-[20px] py-[11px] text-[15px] font-medium leading-none transition-colors ${
                     isSelected
                       ? 'border-[#590516] bg-[#590516] text-[#FFFABB]'
-                      : 'border-[#A73668]/50 bg-[#FFFABB]/50 text-[#590516] hover:bg-[#E89BBD]/45'
+                      : 'border-[#A73668]/50 bg-transparent text-[#590516] hover:bg-[#E89BBD]/35'
                   }`}
                 >
                   {cat.title} ({count})
@@ -115,8 +116,8 @@ export function CategoriesSection({
             })}
           </div>
 
-          <div className="flex flex-wrap items-center gap-[12px]">
-            <span className="font-arcifom text-[14px] font-medium text-[#802348]">
+          <div className="flex flex-wrap items-center gap-[14px]">
+            <span className="font-acumin text-[14px] font-light uppercase text-[#802348]">
               Sucursal:
             </span>
             {(['all', 'Lenca', 'Puerto Montt'] as const).map((branch) => {
@@ -127,10 +128,10 @@ export function CategoriesSection({
                   key={branch}
                   type="button"
                   onClick={() => setBranchFilter(branch)}
-                  className={`font-arcifom cursor-pointer rounded-[12px] px-[16px] py-[9px] text-[14px] font-medium transition-colors ${
+                  className={`font-arcifom cursor-pointer pb-[2px] text-[15px] font-medium transition-colors ${
                     active
-                      ? 'bg-[#A73668] text-[#FFFABB]'
-                      : 'bg-[#E89BBD]/30 text-[#590516] hover:bg-[#E89BBD]/60'
+                      ? 'border-b border-dashed border-[#A73668] text-[#590516]'
+                      : 'border-b border-transparent text-[#590516]/70 hover:text-[#590516]'
                   }`}
                 >
                   {label}
@@ -142,7 +143,7 @@ export function CategoriesSection({
 
         <SectionDivider className="mb-[52px] sm:mb-[68px]" />
 
-        {/* 3. Grilla de Productos del Catálogo */}
+        {/* 3. Grilla de Productos del Catálogo (Sin tarjetas anidadas) */}
         <div className="grid grid-cols-1 gap-x-[24px] gap-y-[56px] sm:grid-cols-2 sm:gap-x-[32px] sm:gap-y-[72px] md:grid-cols-3 xl:grid-cols-4">
           {filteredGarments.map((garment) => (
             <article
@@ -152,7 +153,7 @@ export function CategoriesSection({
               <div>
                 <div
                   onClick={() => onSelectGarment(garment)}
-                  className="relative aspect-[3/4] w-full cursor-pointer overflow-hidden rounded-[14px] bg-[#590516]"
+                  className="relative aspect-[3/4] w-full cursor-pointer overflow-hidden bg-[#590516]"
                 >
                   <img
                     src={garment.primaryImage}
@@ -160,8 +161,8 @@ export function CategoriesSection({
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
-                  <div className="absolute top-[12px] left-[12px] rounded-[8px] bg-[#590516]/90 px-[12px] py-[5px]">
-                    <span className="font-arcifom text-[12px] font-medium text-[#FFFABB]">
+                  <div className="absolute top-[12px] left-[12px] bg-[#590516]/90 px-[10px] py-[4px]">
+                    <span className="font-acumin text-[11px] font-light uppercase text-[#FFFABB]">
                       {garment.branch}
                     </span>
                   </div>
@@ -171,20 +172,20 @@ export function CategoriesSection({
                   onClick={() => onSelectGarment(garment)}
                   className="mt-[20px] flex cursor-pointer flex-col gap-[8px] sm:mt-[24px]"
                 >
-                  <span className="font-arcifom text-[13px] font-medium text-[#A73668]">
+                  <span className="font-acumin text-[12px] font-light uppercase text-[#A73668]">
                     {garment.categoryLabel} · Ref. {garment.refCode}
                   </span>
                   <h2 className="font-arcifom text-[16px] font-medium leading-[1.35] text-[#590516] group-hover:underline sm:text-[17px]">
                     {garment.name}
                   </h2>
-                  <span className="text-[14px] text-[#802348]">
+                  <span className="font-acumin text-[14px] font-light text-[#802348]">
                     Talla: {garment.size} · {garment.condition}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-[18px] flex items-center justify-between border-t border-dashed border-[#E89BBD] pt-[14px]">
-                <span className="text-[13px] font-medium text-[#802348]">
+              <div className="mt-[16px] flex items-center justify-between border-t border-dashed border-[#E89BBD] pt-[12px]">
+                <span className="font-acumin text-[13px] font-light text-[#802348]">
                   {garment.availabilityNote}
                 </span>
                 <button
@@ -195,7 +196,7 @@ export function CategoriesSection({
                       `${garment.refCode} — ${garment.name}`,
                     )
                   }
-                  className="font-arcifom cursor-pointer rounded-[10px] bg-[#A73668] px-[14px] py-[8px] text-[14px] font-medium text-[#FFFABB] transition-colors hover:bg-[#590516]"
+                  className="font-arcifom cursor-pointer text-[14px] font-medium text-[#A73668] hover:underline"
                 >
                   Consultar →
                 </button>
@@ -209,7 +210,7 @@ export function CategoriesSection({
           <SectionDivider className="mb-[40px] sm:mb-[48px]" />
 
           <div className="flex flex-col items-center justify-between gap-[24px] text-center sm:flex-row sm:text-left">
-            <span className="text-[15px] font-medium text-[#802348]">
+            <span className="font-acumin text-[15px] font-light text-[#802348]">
               La disponibilidad, reservas y condiciones de compra se confirman directamente con la tienda.
             </span>
 

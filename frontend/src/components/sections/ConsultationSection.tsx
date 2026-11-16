@@ -25,10 +25,8 @@ interface ConsultationSectionProps {
 const BRANCH_OPTIONS: BranchId[] = ['Lenca', 'Puerto Montt', 'Por definir'];
 
 /**
- * Apartado "Tu Consulta" — Diseñado con Accesibilidad para Adultos Mayores y Estilo Gráfico Moda Austral
- * - Textos amplios y legibles (18px a 22px en etiquetas, botones e inputs).
- * - Botones grandes (mínimo 54px–60px de alto) con indicador claro de selección (✓) y alto contraste.
- * - Campos de texto con bordes claros y fondo luminoso para facilitar la lectura y edición.
+ * Apartado "Tu Consulta" — Accesible para Adultos Mayores (textos de 18px a 22px),
+ * cuerpos en Acumin Variable Concept Light, botones en Arcifom y CERO tarjetas anidadas ("cards-within-cards").
  */
 export function ConsultationSection({
   selectedCategory,
@@ -104,13 +102,13 @@ export function ConsultationSection({
       <div className="mx-auto max-w-[1280px]">
         {/* Encabezado amplio y claro */}
         <div className="mb-[36px] flex flex-wrap items-end justify-between gap-[20px] sm:mb-[48px]">
-          <div className="flex flex-col gap-[12px]">
-            <span className="font-arcifom inline-flex w-fit items-center rounded-[10px] bg-[#A73668] px-[16px] py-[6px] text-[15px] sm:text-[16px] font-medium text-[#FFFABB]">
-              Atención por WhatsApp · {STORE_CONTACT.whatsappDisplay}
+          <div className="flex flex-col gap-[10px]">
+            <span className="font-arcifom text-[15px] sm:text-[16px] font-medium text-[#A73668]">
+              WhatsApp Directo · {STORE_CONTACT.whatsappDisplay}
             </span>
-            <h1 className="type-heading text-[#590516]">Tu Consulta a la Tienda</h1>
-            <p className="max-w-[740px] text-[18px] sm:text-[20px] leading-[1.55] text-[#590516]/90">
-              Sigue estos 4 pasos sencillos para preparar tu mensaje. Al terminar, presiona el botón <strong>Enviar Consulta por WhatsApp</strong>.
+            <h1 className="type-heading text-[#590516]">Tu Consulta</h1>
+            <p className="font-acumin max-w-[740px] text-[18px] sm:text-[20px] font-light leading-[1.55] text-[#590516]">
+              Selecciona la categoría y sucursal que buscas para preparar tu mensaje de WhatsApp.
             </p>
           </div>
 
@@ -128,24 +126,19 @@ export function ConsultationSection({
 
         <SectionDivider className="mb-[44px] sm:mb-[56px]" />
 
-        <div className="grid grid-cols-1 items-start gap-[48px] lg:grid-cols-12 lg:gap-[56px]">
-          {/* Columna Izquierda: Paso 1 (Categoría) y Paso 2 (Sucursal) */}
-          <div className="flex flex-col gap-[40px] lg:col-span-6">
-            {/* PASO 1 · CATEGORÍA */}
+        <div className="grid grid-cols-1 items-start gap-[48px] lg:grid-cols-12 lg:gap-[64px]">
+          {/* Columna Izquierda: Paso 01 (Categoría) y Paso 02 (Sucursal) */}
+          <div className="flex flex-col gap-[40px] lg:col-span-5">
+            {/* 01 · CATEGORÍA */}
             <div className="flex flex-col gap-[16px]">
-              <div className="flex items-center gap-[12px]">
-                <span className="font-arcifom rounded-[10px] bg-[#590516] px-[14px] py-[6px] text-[15px] font-medium text-[#FFFABB]">
-                  Paso 1
-                </span>
-                <h2 className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]">
-                  ¿Qué categoría te interesa?
-                </h2>
-              </div>
-              <p className="text-[17px] leading-[1.5] text-[#802348]">
-                Toca una opción para seleccionarla:
+              <h2 className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]">
+                01 · ¿Qué categoría te interesa?
+              </h2>
+              <p className="font-acumin text-[17px] font-light leading-[1.5] text-[#802348]">
+                Toca un botón para elegir la categoría:
               </p>
 
-              <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
+              <div className="flex flex-wrap gap-[12px]">
                 {CATEGORIES_DATA.map((cat) => {
                   const active = cat.id === selectedCategory;
                   return (
@@ -153,16 +146,14 @@ export function ConsultationSection({
                       key={cat.id}
                       type="button"
                       onClick={() => onChangeCategory(cat.id)}
-                      className={`font-arcifom flex min-h-[58px] cursor-pointer items-center justify-between rounded-[14px] border-2 px-[20px] py-[14px] text-left text-[17px] sm:text-[18px] font-medium transition-colors ${
+                      className={`font-arcifom inline-flex min-h-[58px] cursor-pointer items-center gap-[10px] rounded-[14px] border-2 px-[22px] py-[14px] text-[17px] sm:text-[18px] font-medium leading-none transition-colors ${
                         active
                           ? 'border-[#590516] bg-[#590516] text-[#FFFABB]'
-                          : 'border-[#A73668]/45 bg-[#FFFABB]/55 text-[#590516] hover:border-[#A73668] hover:bg-[#E89BBD]/40'
+                          : 'border-[#590516] bg-transparent text-[#590516] hover:bg-[#E89BBD]/35'
                       }`}
                     >
                       <span>{cat.title}</span>
-                      <span className="text-[18px]" aria-hidden="true">
-                        {active ? '✓' : ''}
-                      </span>
+                      {active && <span aria-hidden="true">✓</span>}
                     </button>
                   );
                 })}
@@ -171,21 +162,16 @@ export function ConsultationSection({
 
             <SectionDivider />
 
-            {/* PASO 2 · SUCURSAL */}
+            {/* 02 · SUCURSAL */}
             <div className="flex flex-col gap-[16px]">
-              <div className="flex items-center gap-[12px]">
-                <span className="font-arcifom rounded-[10px] bg-[#590516] px-[14px] py-[6px] text-[15px] font-medium text-[#FFFABB]">
-                  Paso 2
-                </span>
-                <h2 className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]">
-                  ¿En qué sucursal deseas consultar?
-                </h2>
-              </div>
-              <p className="text-[17px] leading-[1.5] text-[#802348]">
+              <h2 className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]">
+                02 · ¿En qué sucursal deseas consultar?
+              </h2>
+              <p className="font-acumin text-[17px] font-light leading-[1.5] text-[#802348]">
                 Elige la tienda más cercana o selecciona "Por definir":
               </p>
 
-              <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-3">
+              <div className="flex flex-wrap gap-[12px]">
                 {BRANCH_OPTIONS.map((branchOption) => {
                   const isSelected = selectedBranch === branchOption;
                   return (
@@ -193,16 +179,14 @@ export function ConsultationSection({
                       key={branchOption}
                       type="button"
                       onClick={() => onChangeBranch(branchOption)}
-                      className={`font-arcifom flex min-h-[58px] cursor-pointer items-center justify-between rounded-[14px] border-2 px-[18px] py-[14px] text-left text-[17px] sm:text-[18px] font-medium transition-colors ${
+                      className={`font-arcifom inline-flex min-h-[58px] cursor-pointer items-center gap-[10px] rounded-[14px] border-2 px-[22px] py-[14px] text-[17px] sm:text-[18px] font-medium leading-none transition-colors ${
                         isSelected
                           ? 'border-[#590516] bg-[#590516] text-[#FFFABB]'
-                          : 'border-[#A73668]/45 bg-[#FFFABB]/55 text-[#590516] hover:border-[#A73668] hover:bg-[#E89BBD]/40'
+                          : 'border-[#590516] bg-transparent text-[#590516] hover:bg-[#E89BBD]/35'
                       }`}
                     >
                       <span>{branchOption}</span>
-                      <span className="text-[18px]" aria-hidden="true">
-                        {isSelected ? '✓' : ''}
-                      </span>
+                      {isSelected && <span aria-hidden="true">✓</span>}
                     </button>
                   );
                 })}
@@ -210,37 +194,28 @@ export function ConsultationSection({
             </div>
           </div>
 
-          {/* Columna Derecha: Paso 3 (Prenda opcional) y Paso 4 (Mensaje + Botón WhatsApp) */}
-          <div className="flex flex-col gap-[36px] lg:col-span-6">
-            {/* PASO 3 · REFERENCIA OPCIONAL */}
-            <div className="flex flex-col gap-[14px]">
+          {/* Columna Derecha: Paso 03 (Referencia) y Paso 04 (Mensaje + Botón WhatsApp) */}
+          <div className="flex flex-col gap-[40px] lg:col-span-7">
+            {/* 03 · REFERENCIA OPCIONAL */}
+            <div className="flex flex-col gap-[12px]">
               <div className="flex flex-wrap items-center justify-between gap-[10px]">
-                <div className="flex items-center gap-[12px]">
-                  <span className="font-arcifom rounded-[10px] bg-[#A73668] px-[14px] py-[6px] text-[15px] font-medium text-[#FFFABB]">
-                    Paso 3
-                  </span>
-                  <label
-                    htmlFor="input-referencia"
-                    className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]"
-                  >
-                    Prenda o Talla que buscas (Opcional)
-                  </label>
-                </div>
+                <label
+                  htmlFor="input-referencia"
+                  className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]"
+                >
+                  03 · Prenda o Talla que buscas (Opcional)
+                </label>
 
                 {selectedReference && (
                   <button
                     type="button"
                     onClick={() => onChangeReference('')}
-                    className="font-arcifom cursor-pointer rounded-[10px] bg-[#E89BBD]/50 px-[14px] py-[6px] text-[15px] font-medium text-[#590516] hover:bg-[#E89BBD]"
+                    className="font-arcifom cursor-pointer text-[15px] font-medium text-[#A73668] underline"
                   >
-                    Borrar texto ✕
+                    Limpiar texto
                   </button>
                 )}
               </div>
-
-              <p className="text-[17px] leading-[1.5] text-[#802348]">
-                Puedes escribir aquí el nombre de una prenda o tu talla (por ejemplo: <em>Camisa talla L</em> o <em>Botín número 38</em>):
-              </p>
 
               <input
                 id="input-referencia"
@@ -248,73 +223,64 @@ export function ConsultationSection({
                 value={selectedReference}
                 onChange={(e) => onChangeReference(e.target.value)}
                 placeholder="Ej: Camisa de verano talla L / Botín cuero..."
-                className="w-full rounded-[14px] border-2 border-[#A73668] bg-white/85 px-[18px] py-[16px] text-[18px] sm:text-[20px] text-[#590516] placeholder:text-[#802348]/60 focus:border-[#590516] focus:outline-none"
+                className="font-acumin w-full rounded-none border-0 border-b-2 border-[#590516] bg-transparent py-[14px] text-[19px] sm:text-[21px] font-light text-[#590516] placeholder:text-[#802348]/60 focus:border-[#A73668] focus:outline-none"
               />
             </div>
 
-            {/* PASO 4 · MENSAJE LISTO PARA ENVIAR */}
-            <div className="flex flex-col gap-[14px]">
+            {/* 04 · MENSAJE */}
+            <div className="flex flex-col gap-[12px]">
               <div className="flex flex-wrap items-center justify-between gap-[10px]">
-                <div className="flex items-center gap-[12px]">
-                  <span className="font-arcifom rounded-[10px] bg-[#A73668] px-[14px] py-[6px] text-[15px] font-medium text-[#FFFABB]">
-                    Paso 4
-                  </span>
-                  <label
-                    htmlFor="textarea-mensaje"
-                    className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]"
-                  >
-                    Revisa tu mensaje antes de enviar
-                  </label>
-                </div>
+                <label
+                  htmlFor="textarea-mensaje"
+                  className="font-arcifom text-[20px] sm:text-[22px] font-medium text-[#590516]"
+                >
+                  04 · Tu Mensaje (Puedes editarlo si deseas)
+                </label>
 
                 <button
                   type="button"
                   onClick={handleResetMessage}
-                  className="font-arcifom cursor-pointer rounded-[10px] border border-[#A73668] px-[14px] py-[6px] text-[15px] font-medium text-[#A73668] hover:bg-[#A73668] hover:text-[#FFFABB]"
+                  className="font-arcifom cursor-pointer text-[15px] font-medium text-[#A73668] underline"
                 >
-                  Restaurar mensaje original
+                  Restaurar mensaje
                 </button>
               </div>
 
-              <p className="text-[17px] leading-[1.5] text-[#802348]">
-                Este mensaje ya está listo. Si deseas agregar una pregunta adicional, puedes escribir dentro del recuadro:
-              </p>
-
               <textarea
                 id="textarea-mensaje"
-                rows={4}
+                rows={3}
                 value={customMessage}
                 onChange={(e) => {
                   setIsMessageEdited(true);
                   setCustomMessage(e.target.value);
                 }}
-                className="w-full resize-y rounded-[14px] border-2 border-[#590516] bg-white/95 p-[18px] text-[19px] sm:text-[21px] leading-[1.6] text-[#590516] focus:border-[#A73668] focus:outline-none"
+                className="font-acumin w-full resize-y rounded-none border-0 border-b-2 border-[#590516] bg-transparent py-[14px] text-[19px] sm:text-[21px] font-light leading-[1.6] text-[#590516] focus:border-[#A73668] focus:outline-none"
               />
             </div>
 
-            {/* Botones de Acción Principales — Grandes y Claros para Adultos Mayores */}
-            <div className="flex flex-col items-start gap-[20px] pt-[8px]">
-              <div className="flex w-full flex-col gap-[16px] sm:flex-row sm:items-center">
+            {/* Botones de Acción Principales */}
+            <div className="flex flex-col items-start gap-[18px] pt-[8px]">
+              <div className="flex flex-wrap items-center gap-[16px]">
                 <a
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-arcifom inline-flex min-h-[62px] flex-1 items-center justify-center rounded-[14px] bg-[#590516] px-[28px] py-[18px] text-center text-[18px] sm:text-[20px] font-medium leading-tight text-[#FFFABB] transition-colors hover:bg-[#A73668]"
+                  className="font-arcifom inline-flex min-h-[60px] items-center justify-center rounded-[14px] bg-[#590516] px-[30px] py-[16px] text-[18px] sm:text-[20px] font-medium leading-none text-[#FFFABB] transition-colors hover:bg-[#A73668]"
                 >
-                  Enviar Consulta por WhatsApp ↗
+                  Continuar a WhatsApp ↗
                 </a>
 
                 <GhostButton
                   onClick={handleCopyMessage}
-                  className="min-h-[62px] px-[26px] py-[18px] text-[17px] sm:text-[18px]"
+                  className="min-h-[60px] px-[26px] py-[16px] text-[17px] sm:text-[18px]"
                 >
                   {copied ? '✓ Mensaje Copiado' : 'Copiar Mensaje'}
                 </GhostButton>
               </div>
 
-              <div className="w-full rounded-[14px] bg-[#FFFABB]/75 px-[20px] py-[16px] text-[16px] sm:text-[17px] leading-[1.5] text-[#590516]">
-                <strong>Importante:</strong> Enviar la consulta abre el WhatsApp de la tienda ({STORE_CONTACT.whatsappDisplay}). La disponibilidad y reserva se confirman cuando el equipo te responda.
-              </div>
+              <p className="font-acumin text-[16px] sm:text-[17px] font-light leading-[1.5] text-[#802348]">
+                La consulta no confirma reserva automática. La disponibilidad se confirma directamente con la tienda ({STORE_CONTACT.whatsappDisplay}).
+              </p>
             </div>
           </div>
         </div>

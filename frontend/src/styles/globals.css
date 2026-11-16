@@ -8,7 +8,7 @@
   --color-austral-rose: #E89BBD;
   --color-austral-butter: #FFFABB;
 
-  /* Tokens de compatibilidad del sistema (#f5ecda, #510f18, #9b4067, #de9fbd, #fffbc3) */
+  /* Tokens del sistema (#f5ecda, #510f18, #9b4067, #de9fbd, #fffbc3) */
   --color-walnut-shadow: #F6EBD7;
   --color-warm-cream: #590516;
   --color-bark-brown: #590516;
@@ -17,10 +17,13 @@
   --color-ember-accent: #A73668;
   --color-pure-black: #000000;
 
-  /* Tipografía Oficial Manual de Identidad Visual (Página 12): Arcifom */
-  --font-arcifom: 'Arciform', 'Arciform Sans', 'Arcifom', 'Fredoka', 'Quicksand', ui-sans-serif, system-ui, sans-serif;
-  --font-halyard-display-variable: 'Arciform', 'Arciform Sans', 'Arcifom', 'Fredoka', 'Quicksand', 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-arial: 'Inter', 'Arial', system-ui, ui-sans-serif, sans-serif;
+  /* Tipografías Oficiales:
+     - Títulos y botones: Arcifom (--font-arcifom)
+     - Cuerpos de texto y párrafos: Acumin Variable Concept Light (--font-acumin) */
+  --font-arcifom: 'Arciform', 'Arciform Sans', 'Arcifom', 'Fredoka', ui-sans-serif, system-ui, sans-serif;
+  --font-acumin: 'Acumin Variable Concept', 'Acumin Pro Light', 'Acumin Pro', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-halyard-display-variable: 'Acumin Variable Concept', 'Acumin Pro Light', 'Acumin Pro', 'Inter', system-ui, sans-serif;
+  --font-arial: 'Acumin Variable Concept', 'Acumin Pro Light', 'Acumin Pro', 'Arial', system-ui, sans-serif;
 
   /* Typography — Scale */
   --text-legal: 12px;
@@ -87,32 +90,23 @@
   --color-ember-accent: #A73668;
   --color-pure-black: #000000;
 
-  --font-arcifom: 'Arciform', 'Arciform Sans', 'Arcifom', 'Fredoka', 'Quicksand', ui-sans-serif, system-ui, sans-serif;
-  --font-halyard-display-variable: 'Arciform', 'Arciform Sans', 'Arcifom', 'Fredoka', 'Quicksand', 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-arial: 'Inter', 'Arial', system-ui, ui-sans-serif, sans-serif;
+  --font-arcifom: 'Arciform', 'Arciform Sans', 'Arcifom', 'Fredoka', ui-sans-serif, system-ui, sans-serif;
+  --font-acumin: 'Acumin Variable Concept', 'Acumin Pro Light', 'Acumin Pro', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-halyard-display-variable: 'Acumin Variable Concept', 'Acumin Pro Light', 'Acumin Pro', 'Inter', system-ui, sans-serif;
+  --font-arial: 'Acumin Variable Concept', 'Acumin Pro Light', 'Acumin Pro', 'Arial', system-ui, sans-serif;
 
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
 
   --card-padding: 24px;
   --element-gap: 18px;
 
-  --radius-cards: 14px;
-  --radius-inputs: 14px;
+  --radius-cards: 0px;
+  --radius-inputs: 0px;
   --radius-full-round: 9999px;
   --radius-buttons-pill: 14px;
   --radius-buttons-outlined: 14px;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 @keyframes fadeIn {
@@ -133,15 +127,6 @@
   }
 }
 
-@keyframes heroZoom {
-  from {
-    transform: scale(1.06);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -152,17 +137,28 @@
   body {
     background-color: var(--color-austral-cream);
     color: var(--color-austral-burgundy);
-    font-family: var(--font-arcifom);
+    font-family: var(--font-acumin);
+    font-weight: 300;
     letter-spacing: 0.01em;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+  }
+
+  p {
+    font-family: var(--font-acumin);
+    font-weight: 300;
   }
 }
 
 @layer utilities {
   .font-arcifom {
     font-family: var(--font-arcifom);
+  }
+
+  .font-acumin {
+    font-family: var(--font-acumin);
+    font-weight: 300;
   }
 
   .type-display {
@@ -214,23 +210,19 @@
   }
 
   .type-body-conversational {
-    font-family: var(--font-arcifom);
+    font-family: var(--font-acumin);
     font-size: clamp(20px, 2.3vw, var(--text-body));
     line-height: var(--leading-body);
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0px;
   }
 
   .type-legal {
-    font-family: var(--font-arial);
+    font-family: var(--font-acumin);
     font-size: 12px;
     line-height: 1.3;
-    font-weight: 500;
+    font-weight: 300;
     letter-spacing: 0.02em;
-  }
-
-  .animate-fade-up {
-    animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   .animate-fade-in {
@@ -239,9 +231,5 @@
 
   .animate-slide-in-right {
     animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .animate-hero-zoom {
-    animation: heroZoom 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
