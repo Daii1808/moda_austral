@@ -77,11 +77,25 @@ for (const fileName of activeImages) {
   );
 }
 
-// 3. Verify Favicon & SEO Meta Descriptions in index.html
-const faviconPath = path.join(rootDir, 'public', 'favicon.svg');
-assert(fs.existsSync(faviconPath), 'Favicon oficial SVG presente en public/favicon.svg');
+// 3. Verify Multi-Platform Favicon (iMac Safari PNG/ICO/Mask + SVG) & SEO Meta Descriptions in index.html
+for (const favFile of [
+  'favicon.svg',
+  'favicon.ico',
+  'apple-touch-icon.png',
+  'favicon-32x32.png',
+  'favicon-16x16.png',
+  'favicon-96x96.png',
+  'safari-pinned-tab.svg',
+]) {
+  assert(
+    fs.existsSync(path.join(rootDir, 'public', favFile)),
+    `Favicon multiplataforma presente: public/${favFile}`,
+  );
+}
 const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
-assert(indexHtml.includes('href="/favicon.svg"'), 'Favicon enlazado correctamente en index.html');
+assert(indexHtml.includes('href="/favicon.svg?v=4"'), 'Favicon SVG versionado (?v=4) enlazado en index.html');
+assert(indexHtml.includes('apple-touch-icon.png?v=4'), 'Apple Touch Icon PNG para iMac/Safari enlazado en index.html');
+assert(indexHtml.includes('favicon.ico?v=4'), 'Favicon ICO para Safari enlazado en index.html');
 assert(indexHtml.includes('name="description"'), 'Meta descripción SEO presente en index.html');
 assert(indexHtml.includes('property="og:description"'), 'Open Graph meta descripción presente en index.html');
 assert(indexHtml.includes('application/ld+json'), 'Datos estructurados Schema.org JSON-LD presentes en index.html');
@@ -92,14 +106,17 @@ for (const token of ['#F6EBD7', '#FFFABB', '#E89BBD', '#A73668', '#590516', '--f
   assert(css.includes(token), `Token del Manual de Identidad Visual verificado en globals.css: ${token}`);
 }
 
-// 5. Verify Senior-Accessible Typography in ConsultationSection.tsx
+// 5. Verify Senior-Accessible Interactive Step-by-Step Wizard in ConsultationSection.tsx
 const consultationCode = fs.readFileSync(
   path.join(rootDir, 'src/components/sections/ConsultationSection.tsx'),
   'utf8',
 );
 assert(
-  consultationCode.includes('text-[19px]') && consultationCode.includes('min-h-[58px]'),
-  'Tamaños de letra grandes y botones accesibles para adultos mayores verificados en ConsultationSection.tsx',
+  consultationCode.includes('currentStep === 1') &&
+    consultationCode.includes('currentStep === 4') &&
+    consultationCode.includes('Retroceder al Paso') &&
+    consultationCode.includes('min-h-[60px]'),
+  'Asistente paso a paso interactivo con retroceso y accesibilidad para adultos mayores verificado en ConsultationSection.tsx',
 );
 
 // 6. Verify all 8 prototype pages & navigation components exist with zero shadows
